@@ -1,0 +1,13 @@
+.env
+.env.*
+firebase_options.dart
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+build/
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+/coverage/
+.idea/
+.vscode/
