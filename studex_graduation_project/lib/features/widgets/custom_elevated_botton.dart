@@ -1,0 +1,36 @@
+import 'package:flutter/material.dart';
+import 'package:studex_graduation_project/core/theme/app_colors.dart';
+
+class CustomElevatedButton extends StatelessWidget {
+  String text;
+   VoidCallback onPressed;
+
+  CustomElevatedButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusGeometry.circular(16),
+        ),
+        padding: EdgeInsets.all(10),
+
+        backgroundColor:AppColors.primaryLight,
+      ),
+      onPressed: onPressed,
+      child: Text(
+        text,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+          color: Colors.black,
+        ),
+      ),
+    );
+  }
+}
