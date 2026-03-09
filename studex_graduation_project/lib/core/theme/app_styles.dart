@@ -8,25 +8,25 @@ import 'app_colors.dart';
 
 class AppStyles{
   static TextStyle bold20black = GoogleFonts.inter(
-      fontSize: 20, fontWeight: FontWeight.bold,color: AppColors.blackBgColore
+      fontSize: 20, fontWeight: FontWeight.bold,color: AppColors.blackBgColor
   );
   static TextStyle bold16black = GoogleFonts.inter(
-      fontSize: 16, fontWeight: FontWeight.bold,color: AppColors.blackBgColore
+      fontSize: 16, fontWeight: FontWeight.bold,color: AppColors.blackBgColor
   );
   static TextStyle medium16black = GoogleFonts.inter(
-      fontSize: 16, fontWeight: FontWeight.w500,color: AppColors.blackBgColore
+      fontSize: 16, fontWeight: FontWeight.w500,color: AppColors.blackBgColor
   );
   static TextStyle bold20white = GoogleFonts.inter(
-      fontSize: 20, fontWeight: FontWeight.bold,color: AppColors.whiteColore
+      fontSize: 20, fontWeight: FontWeight.bold,color: AppColors.whiteColor
   );
   static TextStyle bold24white = GoogleFonts.inter(
-      fontSize: 24, fontWeight: FontWeight.bold,color: AppColors.whiteColore
+      fontSize: 24, fontWeight: FontWeight.bold,color: AppColors.whiteColor
   );
   static TextStyle medium16white = GoogleFonts.inter(
-      fontSize: 20, fontWeight: FontWeight.w500,color: AppColors.whiteColore
+      fontSize: 20, fontWeight: FontWeight.w500,color: AppColors.whiteColor
   );
   static TextStyle medium14white = GoogleFonts.inter(
-      fontSize: 20, fontWeight: FontWeight.w500,color: AppColors.whiteColore
+      fontSize: 20, fontWeight: FontWeight.w500,color: AppColors.whiteColor
   );
   static TextStyle bold20primary = GoogleFonts.inter(
       fontSize: 20, fontWeight: FontWeight.bold,color: AppColors.primaryLight
@@ -41,7 +41,7 @@ class AppStyles{
       fontSize: 16, fontWeight: FontWeight.bold,color: AppColors.primaryDark
   );
   static TextStyle bold16white = GoogleFonts.inter(
-      fontSize: 16, fontWeight: FontWeight.bold,color: AppColors.whiteColore
+      fontSize: 16, fontWeight: FontWeight.bold,color: AppColors.whiteColor
   );
   static TextStyle medium16primary = GoogleFonts.inter(
       fontSize: 16, fontWeight: FontWeight.w400,color: AppColors.primaryLight

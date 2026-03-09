@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:studex_graduation_project/features/auth/login/login_screen.dart';
-import 'package:studex_graduation_project/features/onboarding/on_boarding.dart';
-import 'package:studex_graduation_project/features/onboarding/on_boarding_three.dart';
-import 'package:studex_graduation_project/routes/app_routes.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:studex_graduation_project/routes/app_router_generation.dart';
 
-import 'features/auth/register/register_screen.dart';
-import 'features/onboarding/on_boarding_two.dart';
+import 'core/theme/app_themes.dart';
+
+
 
 void main() {
   runApp(const MyApp());
@@ -18,17 +17,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.OnBoarding,
-      routes: {
-        AppRoutes.OnBoarding: (context) => OnBoarding(),
-        AppRoutes.OnBoardingTwo: (context) => OnBoardingTwo(),
-        AppRoutes.OnBoardingThree: (context) => OnBoardingThree(),
-        AppRoutes.loginRoute: (context) => LoginScreen(),
-        AppRoutes.registerRoute: (context) => RegisterScreen(),
-
-      }
+    return ScreenUtilInit(
+      designSize: Size(390, 884),
+      builder: (context, child) {
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: 'Finance App ',
+          theme: AppThemes.lightTheme,
+          routerConfig: RouterGenerationConfig.goRouter,
+        );
+      },
     );
   }
 }

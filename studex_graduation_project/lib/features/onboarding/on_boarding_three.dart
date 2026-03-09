@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:studex_graduation_project/core/theme/app_colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:studex_graduation_project/core/theme/app_styles.dart';
-import 'package:studex_graduation_project/features/widgets/custom_elevated_botton.dart';
+import 'package:studex_graduation_project/core/widgets/spacing.dart';
 import 'package:studex_graduation_project/routes/app_routes.dart';
 
 import '../../core/constants/assets_paths.dart';
@@ -22,18 +22,29 @@ class _OnBoardingThreeState extends State<OnBoardingThree> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Padding(
-        padding:  EdgeInsets.symmetric(vertical: 40,horizontal: 25),
+        padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 25.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(AssetsPaths.onboarding3),
-            Text('Smart tests and tracking board.',style: AppStyles.bold20black ,),
-            SizedBox(height: 15,),
-            Text('Test your knowledge and track your academic progress through detailed graphs.',
-            style: AppStyles.medium16black,
+            Text(
+              'Smart tests and tracking board.',
+              style: AppStyles.bold20black,
+            ),
+            HeightSpacing(15),
+            Text(
+              'Test your knowledge and track your academic progress through detailed graphs.',
+              style: AppStyles.medium16black,
             ),
             Spacer(),
-            Center(child: CustomBotton(onTap: (){Navigator.pushNamed(context, AppRoutes.loginRoute);}, text: 'Start Now'),)
+            Center(
+              child: CustomBotton(
+                onTap: () {
+                  GoRouter.of(context).pushNamed(AppRoutes.loginRoute);
+                },
+                text: 'Start Now',
+              ),
+            ),
           ],
         ),
       ),
