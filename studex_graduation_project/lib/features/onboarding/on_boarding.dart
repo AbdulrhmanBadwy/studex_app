@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:studex_graduation_project/core/theme/app_colors.dart';
 
 import 'package:studex_graduation_project/core/theme/app_styles.dart';
 import 'package:studex_graduation_project/core/widgets/spacing.dart';
@@ -20,7 +21,7 @@ class _OnBoardingState extends State<OnBoarding> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: AppColors.whiteColor,
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 25.h),
         child: Column(
@@ -38,7 +39,7 @@ class _OnBoardingState extends State<OnBoarding> {
                 ),
               ),
             ),
-            Image.asset(AssetsPaths.onboarding1 , width: 340.w , height: 340.h,),
+            Image.asset(AssetsPaths.onboard , width: 340.w , height: 340.h,),
             Text(
               'Organize your studying in one place.',
               style: AppStyles.bold20black,
@@ -50,8 +51,8 @@ class _OnBoardingState extends State<OnBoarding> {
             ),
             Spacer(),
             Center(
-              child: CustomBotton(
-                onTap: () {
+              child: CustomButton(
+                onPressed: () {
                   GoRouter.of(context).pushNamed(AppRoutes.onBoardingTwo);
                 },
                 text: 'Next',

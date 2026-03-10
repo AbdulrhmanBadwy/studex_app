@@ -31,7 +31,7 @@ class RouterGenerationConfig {
 
       GoRoute(
         path: AppRoutes.loginRoute,
-        builder: (context, state) => const LoginScreen(),
+        builder: (context, state) =>  LoginScreen(),
         name: AppRoutes.loginRoute,
       ),
       GoRoute(

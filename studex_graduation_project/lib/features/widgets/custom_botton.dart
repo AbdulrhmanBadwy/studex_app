@@ -1,27 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:studex_graduation_project/core/theme/app_colors.dart';
-import 'package:studex_graduation_project/core/theme/app_styles.dart';
 
-class CustomBotton extends StatelessWidget {
-  final String text;
-  final VoidCallback onTap;
-   const CustomBotton({super.key, required this.onTap, required this.text});
+import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_styles.dart';
+
+class CustomButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final String? text;
+  final Color? backgroundColor;
+  final Color? borderColor;
+  final TextStyle? textStyle;
+  final bool hasIcon;
+
+  final Widget? childIconWidget;
+
+  const CustomButton({super.key,required this.onPressed, this.text,
+    this.backgroundColor = AppColors.primaryLight,this.borderColor = AppColors.transparent,
+    this.textStyle, this.hasIcon = false ,
+    this.childIconWidget,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: AppColors.primaryLight,
-          borderRadius:
-            BorderRadius.circular(48.r)
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    return ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size(400, 20),
+            backgroundColor: backgroundColor,
+            elevation: 0,
+            padding: EdgeInsets.symmetric(vertical: height*0.02),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadiusGeometry.circular(16),
+                side: BorderSide(
+                  color: borderColor!,
+                  width: 2,
+                )
+            )
         ),
-        child:Center(child: Text(text,style: AppStyles.medium16black,)) ,
-      ),
+        onPressed: onPressed,
+        child: hasIcon ?
+        childIconWidget!
+            :
+        Text(text??'',
+          style:textStyle ?? AppStyles.bold20white,)
     );
   }
 }
