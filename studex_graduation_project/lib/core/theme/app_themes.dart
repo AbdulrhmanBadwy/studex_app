@@ -9,17 +9,16 @@ class AppThemes{
 
       primaryColor: AppColors.primaryLight,
       shadowColor: AppColors.primaryLight,
-      scaffoldBackgroundColor: AppColors.whiteBgColore,
+      scaffoldBackgroundColor: AppColors.whiteBgColor,
       appBarTheme: AppBarTheme(
         iconTheme: IconThemeData(
             color: AppColors.primaryLight
         ),
       ),
-      dividerColor: AppColors.whiteColore,
-      focusColor: AppColors.whiteColore,
+      dividerColor: AppColors.whiteColor,
+      focusColor: AppColors.whiteColor,
       splashColor: AppColors.greyColor,
-      indicatorColor: AppColors.greyColor,
-      cardColor: AppColors.blackBgColore,
+      cardColor: AppColors.blackBgColor,
       textTheme: TextTheme(headlineLarge: AppStyles.bold20black,
           headlineMedium: AppStyles.medium16primary,titleMedium: AppStyles.bold16white,
           bodyLarge: AppStyles.medium16grey,titleSmall: AppStyles.bold16black
@@ -28,14 +27,14 @@ class AppThemes{
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: AppColors.primaryLight,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColors.whiteColore,
-        unselectedItemColor: AppColors.whiteColore,
+        selectedItemColor: AppColors.whiteColor,
+        unselectedItemColor: AppColors.whiteColor,
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: AppColors.primaryLight,
           shape: StadiumBorder(
               side: BorderSide(
-                color: AppColors.whiteColore,
+                color: AppColors.whiteColor,
                 width: 5,
               )
           )
@@ -53,8 +52,7 @@ class AppThemes{
       dividerColor: AppColors.primaryDark,
       focusColor: AppColors.primaryLight,
       splashColor: AppColors.primaryLight,
-      cardColor: AppColors.whiteColore,
-      indicatorColor: AppColors.whiteColore,
+      cardColor: AppColors.whiteColor,
 
 
       textTheme: TextTheme(headlineLarge: AppStyles.bold20white,
@@ -65,14 +63,14 @@ class AppThemes{
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: AppColors.primaryDark,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColors.whiteColore,
-        unselectedItemColor: AppColors.whiteColore,
+        selectedItemColor: AppColors.whiteColor,
+        unselectedItemColor: AppColors.whiteColor,
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: AppColors.primaryDark,
           shape: StadiumBorder(
               side: BorderSide(
-                color: AppColors.whiteColore,
+                color: AppColors.whiteColor,
                 width: 5,
               )
           )
