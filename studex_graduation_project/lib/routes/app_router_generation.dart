@@ -5,13 +5,14 @@ import 'package:studex_graduation_project/features/onboarding/on_boarding.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding_three.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding_two.dart';
 import 'package:studex_graduation_project/features/quiz/screens/leaderboard_screen.dart';
+import 'package:studex_graduation_project/features/rooms/screens/create_room.dart';
 import 'package:studex_graduation_project/features/settings/settings_screen.dart';
 
 import 'app_routes.dart';
 
 class RouterGenerationConfig {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: AppRoutes.settingsScreen,
+    initialLocation: AppRoutes.createRoomScreen,
     routes: [
       GoRoute(
         path: AppRoutes.onBoarding,
@@ -50,6 +51,11 @@ class RouterGenerationConfig {
         path: AppRoutes.settingsScreen,
         builder: (context, state) => const SettingsScreen(),
         name: AppRoutes.settingsScreen,
+      ),
+      GoRoute(
+        path: AppRoutes.createRoomScreen,
+        builder: (context, state) => const CreateRoom(),
+        name: AppRoutes.createRoomScreen,
       ),
 
 

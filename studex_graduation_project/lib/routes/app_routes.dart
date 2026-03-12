@@ -8,4 +8,5 @@ class AppRoutes {
   static const registerRoute = '/register_Screen';
   static const leaderboardScreen = '/leaderboard_Screen';
   static const settingsScreen = '/settings_Screen';
+  static const createRoomScreen = '/create_room_screen';
 }

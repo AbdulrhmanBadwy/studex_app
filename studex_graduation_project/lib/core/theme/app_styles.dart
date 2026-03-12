@@ -11,7 +11,7 @@ class AppStyles{
   static TextStyle primaryHeadlineStyle = TextStyle(
     fontFamily: 'AbdoMaster',
     fontSize: 20.sp ,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w800,
     color: AppColors.blackHeadLine,
 
   );

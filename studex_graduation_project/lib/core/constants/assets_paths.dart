@@ -19,4 +19,9 @@ class AssetsPaths {
   static const String centerHelping = 'assets/images/center_helping.svg';
   static const String privacyPolitical = 'assets/images/privacy_political.svg';
   static const String exitIcon = 'assets/images/exist_icon.svg';
+  static const String publicRoom = 'assets/images/public_room.svg';
+  static const String privateRoom = 'assets/images/private_room.svg';
+  static const String createRoom = 'assets/images/create_room_icon.svg';
+
+
 }
