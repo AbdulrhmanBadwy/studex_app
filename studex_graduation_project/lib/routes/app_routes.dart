@@ -9,4 +9,5 @@ class AppRoutes {
   static const leaderboardScreen = '/leaderboard_Screen';
   static const settingsScreen = '/settings_Screen';
   static const createRoomScreen = '/create_room_screen';
+  static const createQuizz = '/create_quizz';
 }

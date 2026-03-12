@@ -6,6 +6,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? hintText;
   final double? width;
   final double? heigh;
+  final Widget? suffixIcon;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final int? maxLines;
@@ -17,7 +18,7 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     this.validator,
     this.heigh,
-    this.maxLines,
+    this.maxLines, this.suffixIcon,
   });
 
   @override
@@ -59,6 +60,7 @@ class CustomTextFormField extends StatelessWidget {
           ),
           filled: true,
           fillColor: Colors.white,
+          suffixIcon: suffixIcon,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16.r),
             borderSide: BorderSide(color: AppColors.blackHeadLine, width: 1.sp),

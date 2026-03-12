@@ -8,8 +8,9 @@ import 'package:studex_graduation_project/core/widgets/spacing.dart';
 
 class CustomCreateRoomButton extends StatelessWidget {
   final VoidCallback onPressed;
+  final String text ;
 
-  const CustomCreateRoomButton({super.key, required this.onPressed});
+  const CustomCreateRoomButton({super.key, required this.onPressed, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class CustomCreateRoomButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'إنشاء الغرفة',
+              text,
               style: AppStyles.primaryHeadlineStyle.copyWith(
                 color: Colors.white,
                 fontSize: 18.sp,
