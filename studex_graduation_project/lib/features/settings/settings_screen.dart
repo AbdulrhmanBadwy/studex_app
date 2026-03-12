@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:studex_graduation_project/core/constants/assets_paths.dart';
 import 'package:studex_graduation_project/core/theme/app_colors.dart';
 import 'package:studex_graduation_project/core/theme/app_styles.dart';
+import 'package:studex_graduation_project/features/settings/widgets/custom_exit_button.dart';
 import 'package:studex_graduation_project/features/settings/widgets/custom_headline_settings.dart';
 import 'package:studex_graduation_project/features/settings/widgets/custom_item_in_settings.dart';
 import 'package:studex_graduation_project/features/settings/widgets/custom_item_notication.dart';
 import 'package:studex_graduation_project/features/settings/widgets/custom_language_item.dart';
+import 'package:studex_graduation_project/routes/app_routes.dart';
 
 import '../../core/widgets/spacing.dart';
 
@@ -32,7 +35,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomHeadlineSettings(title: 'الإعدادات'),
+                CustomHeadlineSettings(
+                  title: 'الإعدادات',
+                  onPressed: () {
+                    GoRouter.of(context).pop;
+                  },
+                ),
                 HeightSpacing(5),
                 Divider(),
                 HeightSpacing(24),
@@ -48,9 +56,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   title: 'تعديل الملف الشخصي ',
                   icon: AssetsPaths.personSettings,
                   trailingIcon: Icons.arrow_forward_ios_outlined,
+                  onTap: (){
+
+                  },
                 ),
                 HeightSpacing(10),
                 CustomItemInSettings(
+                  onTap: (){
+
+                  },
                   title: 'تغيير كلمة المرور ',
                   icon: AssetsPaths.changePasswordSettings,
                   trailingIcon: Icons.arrow_forward_ios_outlined,
@@ -122,18 +136,29 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 HeightSpacing(8.5),
                 CustomItemInSettings(
+                  onTap: (){
+
+                  },
                   title: 'مركز المساعده',
                   icon: AssetsPaths.centerHelping,
                   trailingIcon: Icons.arrow_forward_ios_outlined,
                 ),
                 HeightSpacing(10),
                 CustomItemInSettings(
+                  onTap: (){
+
+                  },
                   title: 'سياسة الخصوصية',
                   icon: AssetsPaths.privacyPolitical,
                   trailingIcon: Icons.arrow_forward_ios_outlined,
                 ),
-                HeightSpacing(20)
-
+                HeightSpacing(48),
+                CustomExitButton(
+                  onPressed: () {
+                    GoRouter.of(context).pushReplacement(AppRoutes.loginRoute);
+                  },
+                ),
+                HeightSpacing(30),
               ],
             ),
           ),

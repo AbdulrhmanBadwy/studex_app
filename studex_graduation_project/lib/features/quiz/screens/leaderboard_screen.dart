@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:studex_graduation_project/core/constants/assets_paths.dart';
 import 'package:studex_graduation_project/core/widgets/spacing.dart';
 import 'package:studex_graduation_project/features/quiz/widgets/custom_first_three.dart';
@@ -18,13 +19,15 @@ class LeaderboardScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            CustomHeadlineScreen(title: 'لوحة المتصدرين',),
+            CustomHeadlineScreen(
+              title: 'لوحة المتصدرين',
+              onPressed: GoRouter.of(context).pop,
+            ),
             HeightSpacing(22),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-
                 CustomFirstThree(
                   name: 'ريم خالد',
                   order: '2',
@@ -53,21 +56,23 @@ class LeaderboardScreen extends StatelessWidget {
                   orderTextColor: const Color(0xff475569),
                 ),
               ],
-            ) ,
+            ),
             HeightSpacing(28),
             Expanded(
               child: ListView.separated(
                 padding: EdgeInsets.symmetric(horizontal: 24.w),
                 itemCount: 10,
-                  itemBuilder: (context,index){
+                itemBuilder: (context, index) {
                   return CustomItem(
-                    name:'عبدالرحمن بدوي' ,
+                    name: 'عبدالرحمن بدوي',
                     order: '$index',
                     image: AssetsPaths.onboarding3,
                   );
-              }, separatorBuilder: (BuildContext context, int index) { 
+                },
+                separatorBuilder: (BuildContext context, int index) {
                   return HeightSpacing(12);
-              },),
+                },
+              ),
             ),
           ],
         ),

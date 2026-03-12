@@ -7,27 +7,31 @@ class CustomItemInSettings extends StatelessWidget {
   final String title;
   final String icon;
   final IconData trailingIcon;
+  final VoidCallback onTap;
   const CustomItemInSettings({
     super.key,
     required this.title,
-    required this.icon, required this.trailingIcon,
+    required this.icon,
+    required this.trailingIcon,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      width:356.w ,
+      width: 356.w,
       height: 73.h,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(15.r)
+        borderRadius: BorderRadius.circular(15.r),
       ),
       child: ListTile(
-        title: Text(title , style: AppStyles.textItemInSettings,),
-        leading: SvgPicture.asset(icon ,width: 40.w, height: 40.h,),
-        trailing: IconButton(onPressed: (){}, icon: Icon(trailingIcon)),
-        ),
+        onTap: onTap,
+        title: Text(title, style: AppStyles.textItemInSettings),
+        leading: SvgPicture.asset(icon, width: 40.w, height: 40.h),
+        trailing: IconButton(onPressed: () {}, icon: Icon(trailingIcon)),
+      ),
     );
   }
 }

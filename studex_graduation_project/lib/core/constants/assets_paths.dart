@@ -18,4 +18,5 @@ class AssetsPaths {
   static const String appLanguage = 'assets/images/app_language.svg';
   static const String centerHelping = 'assets/images/center_helping.svg';
   static const String privacyPolitical = 'assets/images/privacy_political.svg';
+  static const String exitIcon = 'assets/images/exist_icon.svg';
 }

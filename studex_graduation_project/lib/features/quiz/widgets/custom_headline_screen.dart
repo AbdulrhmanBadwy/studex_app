@@ -6,8 +6,13 @@ import '../../../core/theme/app_styles.dart';
 import '../../../core/widgets/spacing.dart';
 
 class CustomHeadlineScreen extends StatelessWidget {
-  final String title ;
-  const CustomHeadlineScreen({super.key, required this.title});
+  final String title;
+  final VoidCallback onPressed;
+  const CustomHeadlineScreen({
+    super.key,
+    required this.title,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,7 @@ class CustomHeadlineScreen extends StatelessWidget {
       children: [
         WidthSpacing(35),
         IconButton(
-          onPressed: () {},
+          onPressed: onPressed,
           icon: Icon(
             Icons.arrow_back,
             size: 27.sp,
@@ -23,12 +28,7 @@ class CustomHeadlineScreen extends StatelessWidget {
           ),
         ),
         WidthSpacing(60),
-        Center(
-          child: Text(
-            title,
-            style: AppStyles.primaryHeadlineStyle,
-          ),
-        ),
+        Center(child: Text(title, style: AppStyles.primaryHeadlineStyle)),
       ],
     );
   }
