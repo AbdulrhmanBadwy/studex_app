@@ -5,12 +5,13 @@ import 'package:studex_graduation_project/features/onboarding/on_boarding.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding_three.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding_two.dart';
 import 'package:studex_graduation_project/features/quiz/screens/leaderboard_screen.dart';
+import 'package:studex_graduation_project/features/settings/settings_screen.dart';
 
 import 'app_routes.dart';
 
 class RouterGenerationConfig {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: AppRoutes.leaderboardScreen,
+    initialLocation: AppRoutes.settingsScreen,
     routes: [
       GoRoute(
         path: AppRoutes.onBoarding,
@@ -44,6 +45,11 @@ class RouterGenerationConfig {
         path: AppRoutes.leaderboardScreen,
         builder: (context, state) => const LeaderboardScreen(),
         name: AppRoutes.leaderboardScreen,
+      ),
+      GoRoute(
+        path: AppRoutes.settingsScreen,
+        builder: (context, state) => const SettingsScreen(),
+        name: AppRoutes.settingsScreen,
       ),
 
 

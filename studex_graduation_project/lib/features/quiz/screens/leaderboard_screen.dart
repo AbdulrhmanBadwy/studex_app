@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:studex_graduation_project/core/constants/assets_paths.dart';
 import 'package:studex_graduation_project/core/widgets/spacing.dart';
 import 'package:studex_graduation_project/features/quiz/widgets/custom_first_three.dart';
-import 'package:studex_graduation_project/features/quiz/widgets/custom_headline_leaderboard_screen.dart';
+import 'package:studex_graduation_project/features/quiz/widgets/custom_headline_screen.dart';
 import 'package:studex_graduation_project/features/quiz/widgets/custom_item.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -18,7 +18,7 @@ class LeaderboardScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            CustomHeadlineLeaderboardScreen(),
+            CustomHeadlineScreen(title: 'لوحة المتصدرين',),
             HeightSpacing(22),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -29,7 +29,7 @@ class LeaderboardScreen extends StatelessWidget {
                   name: 'ريم خالد',
                   order: '2',
                   size: 80,
-                  image: AssetsPaths.onboarding3,
+                  image: AssetsPaths.onboarding2,
                   borderColor: const Color(0xff948E73),
                   orderBackgroundColor: const Color(0xffF1E5D1),
                   orderTextColor: const Color(0xff948E73),

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:studex_graduation_project/core/constants/assets_paths.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_styles.dart';
@@ -54,7 +55,7 @@ class CustomFirstThree extends StatelessWidget {
                   width: 4.w,
                 ),
                 image: DecorationImage(
-                  image: AssetImage(image ?? ''),
+                  image: AssetImage(image ?? AssetsPaths.defaultUserAvatar),
                   fit: BoxFit.cover,
                 ),
               ),

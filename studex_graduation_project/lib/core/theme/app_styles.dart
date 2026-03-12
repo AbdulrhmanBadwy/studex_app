@@ -11,9 +11,16 @@ class AppStyles{
   static TextStyle primaryHeadlineStyle = TextStyle(
     fontFamily: 'AbdoMaster',
     fontSize: 20.sp ,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w700,
     color: AppColors.blackHeadLine,
 
+  );
+
+  static TextStyle textItemInSettings = TextStyle(
+    fontFamily: 'AbdoMaster',
+    fontSize: 16.sp ,
+    fontWeight: FontWeight.bold,
+    color: AppColors.blackHeadLine,
   );
   static TextStyle bold20black = GoogleFonts.inter(
       fontSize: 20, fontWeight: FontWeight.bold,color: AppColors.blackBgColor

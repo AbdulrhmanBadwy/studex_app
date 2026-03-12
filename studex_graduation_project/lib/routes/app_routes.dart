@@ -7,4 +7,5 @@ class AppRoutes {
   static const loginRoute = '/login_Screen';
   static const registerRoute = '/register_Screen';
   static const leaderboardScreen = '/leaderboard_Screen';
+  static const settingsScreen = '/settings_Screen';
 }

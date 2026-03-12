@@ -9,4 +9,13 @@ class AssetsPaths {
   static const String logoShowPassword ='assets/images/icon_show_pass.png';
   static const String iconGoogle ='assets/images/icon_google.png';
   static const String logoRePassword ='assets/images/logo_rePass.png';
+  static const String defaultUserAvatar = 'assets/images/logo_rePass.png';
+  static const String personSettings = 'assets/images/person_editing_settings.svg';
+  static const String changePasswordSettings = 'assets/images/change_password_settings.svg';
+  static const String chatNotificationsSettings = 'assets/images/chat_notifications_settings.svg';
+  static const String quizzesNotificationsSettings = 'assets/images/quizzes_notifications_settings.svg';
+  static const String darkMode = 'assets/images/dark_mode.svg';
+  static const String appLanguage = 'assets/images/app_language.svg';
+  static const String centerHelping = 'assets/images/center_helping.svg';
+  static const String privacyPolitical = 'assets/images/privacy_political.svg';
 }
