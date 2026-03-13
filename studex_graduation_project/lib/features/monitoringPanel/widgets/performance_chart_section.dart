@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:studex_graduation_project/core/theme/app_colors.dart';
 import 'package:studex_graduation_project/core/theme/app_styles.dart';
 
 class PerformanceChartSection extends StatefulWidget {
@@ -35,6 +36,8 @@ class _PerformanceChartSectionState extends State<PerformanceChartSection> {
                   child: DropdownButton<String>(
                     value: selected,
                     icon: const Icon(Icons.keyboard_arrow_down),
+                    iconEnabledColor: Colors.black,
+                    style: const TextStyle(color:Color(0xFF6366F1)),
                     borderRadius: BorderRadius.circular(12.r),
                     items: options.map((item) {
                       return DropdownMenuItem<String>(
