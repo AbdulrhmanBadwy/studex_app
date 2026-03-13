@@ -6,4 +6,5 @@ class AppRoutes {
   static const onBoardingThree = '/on_boarding3_screen';
   static const loginRoute = '/login_Screen';
   static const registerRoute = '/register_Screen';
+  static const monitoringPanel='/monitoring_panel_screen';
 }

@@ -6,21 +6,19 @@ import 'package:studex_graduation_project/core/theme/app_styles.dart';
 class CustomBotton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
-   const CustomBotton({super.key, required this.onTap, required this.text});
+  const CustomBotton({super.key, required this.onTap, required this.text});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
       child: Container(
-
         width: double.infinity,
         decoration: BoxDecoration(
           color: AppColors.primaryLight,
-          borderRadius:
-            BorderRadius.circular(48.r)
+          borderRadius: BorderRadius.circular(48.r),
         ),
-        child:Center(child: Text(text,style: AppStyles.medium16black,)) ,
+        child: Center(child: Text(text, style: AppStyles.medium16black)),
       ),
     );
   }
