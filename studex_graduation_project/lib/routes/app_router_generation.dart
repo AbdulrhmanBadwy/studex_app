@@ -14,7 +14,7 @@ import 'app_routes.dart';
 
 class RouterGenerationConfig {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: AppRoutes.monitoringPanel,
+    initialLocation: AppRoutes.createQuizz,
     routes: [
       GoRoute(
         path: AppRoutes.onBoarding,
