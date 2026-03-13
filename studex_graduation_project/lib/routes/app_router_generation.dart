@@ -14,7 +14,7 @@ import 'app_routes.dart';
 
 class RouterGenerationConfig {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: AppRoutes.onBoarding,
+    initialLocation: AppRoutes.monitoringPanel,
     routes: [
       GoRoute(
         path: AppRoutes.onBoarding,
@@ -69,8 +69,6 @@ class RouterGenerationConfig {
         builder: (context, state) => const CreateQuizz(),
         name: AppRoutes.createQuizz,
       ),
-
-
     ],
   );
 }

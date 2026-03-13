@@ -18,7 +18,7 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: Color(0xFFF8F9FF),
       centerTitle: true,
       elevation: 0,
       scrolledUnderElevation: 0,

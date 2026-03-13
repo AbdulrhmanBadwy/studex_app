@@ -26,7 +26,7 @@ class MonitoringPanelScreen extends StatelessWidget {
 
         ]),
       ),
-      backgroundColor: AppColors.whiteBgColor,
+      backgroundColor: Color(0xFFF8F9FF),
     );
   }
 }
