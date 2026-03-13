@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:studex_graduation_project/core/theme/app_colors.dart';
+import 'package:studex_graduation_project/core/theme/app_styles.dart';
 
 class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;

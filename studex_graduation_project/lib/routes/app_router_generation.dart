@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:studex_graduation_project/features/auth/login/login_screen.dart';
 import 'package:studex_graduation_project/features/auth/register/register_screen.dart';
+import 'package:studex_graduation_project/features/monitoringPanel/dashboard_screen.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding_three.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding_two.dart';
@@ -35,13 +36,18 @@ class RouterGenerationConfig {
 
       GoRoute(
         path: AppRoutes.loginRoute,
-        builder: (context, state) =>  LoginScreen(),
+        builder: (context, state) => const LoginScreen(),
         name: AppRoutes.loginRoute,
       ),
       GoRoute(
         path: AppRoutes.registerRoute,
         builder: (context, state) => const RegisterScreen(),
         name: AppRoutes.registerRoute,
+      ),
+      GoRoute(
+        path: AppRoutes.monitoringPanel,
+        builder: (context, state) => const MonitoringPanelScreen(),
+        name: AppRoutes.monitoringPanel,
       ),
       GoRoute(
         path: AppRoutes.leaderboardScreen,
@@ -63,8 +69,6 @@ class RouterGenerationConfig {
         builder: (context, state) => const CreateQuizz(),
         name: AppRoutes.createQuizz,
       ),
-
-
     ],
   );
 }
