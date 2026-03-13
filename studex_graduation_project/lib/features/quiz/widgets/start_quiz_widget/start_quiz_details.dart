@@ -92,10 +92,16 @@ class _StatCard extends StatelessWidget {
           ),
           SizedBox(height: 10.h),
 
-          Text(label, style: AppStyles.medium16grey),
+          Text(
+            label,
+            style: AppStyles.medium16grey.copyWith(fontFamily: 'AbdoMaster'),
+          ),
           SizedBox(height: 4.h),
 
-          Text(value, style: AppStyles.bold16black),
+          Text(
+            value,
+            style: AppStyles.bold16black.copyWith(fontFamily: 'AbdoMaster'),
+          ),
         ],
       ),
     );

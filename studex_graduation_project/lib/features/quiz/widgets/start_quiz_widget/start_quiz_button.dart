@@ -33,7 +33,10 @@ class StartQuizButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
 
             children: [
-              Text(label, style: AppStyles.bold16white),
+              Text(
+                label,
+                style: AppStyles.bold16white.copyWith(fontFamily: 'AbdoMaster'),
+              ),
               SizedBox(width: 8.w),
               Icon(Icons.play_arrow_rounded, color: Colors.white, size: 20.sp),
             ],
