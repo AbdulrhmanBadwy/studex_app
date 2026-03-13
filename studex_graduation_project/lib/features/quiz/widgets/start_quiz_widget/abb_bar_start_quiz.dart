@@ -51,13 +51,17 @@ class StartQuizAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Text(
                     title,
                     textAlign: TextAlign.center,
-                    style: AppStyles.bold16black,
+                    style: AppStyles.bold16black.copyWith(
+                      fontFamily: 'AbdoMaster',
+                    ),
                   ),
                   SizedBox(height: 2.h),
                   Text(
                     subtitle,
                     textAlign: TextAlign.center,
-                    style: AppStyles.medium16black,
+                    style: AppStyles.medium16black.copyWith(
+                      fontFamily: 'AbdoMaster',
+                    ),
                   ),
                 ],
               ),
