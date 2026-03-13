@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/src/painting/text_style.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'app_colors.dart';
@@ -7,8 +8,25 @@ import 'app_colors.dart';
 
 
 class AppStyles{
+  static TextStyle primaryHeadlineStyle = TextStyle(
+    fontFamily: 'AbdoMaster',
+    fontSize: 20.sp ,
+    fontWeight: FontWeight.w800,
+    color: AppColors.blackHeadLine,
+
+  );
+
+  static TextStyle textItemInSettings = TextStyle(
+    fontFamily: 'AbdoMaster',
+    fontSize: 16.sp ,
+    fontWeight: FontWeight.bold,
+    color: AppColors.blackHeadLine,
+  );
   static TextStyle bold20black = GoogleFonts.inter(
       fontSize: 20, fontWeight: FontWeight.bold,color: AppColors.blackBgColor
+  );
+  static TextStyle bold30black = GoogleFonts.inter(
+      fontSize: 30, fontWeight: FontWeight.bold,color:AppColors.blackBgColor
   );
   static TextStyle bold16black = GoogleFonts.inter(
       fontSize: 16, fontWeight: FontWeight.bold,color: AppColors.blackBgColor

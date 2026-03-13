@@ -5,12 +5,16 @@ import 'package:studex_graduation_project/features/monitoringPanel/dashboard_scr
 import 'package:studex_graduation_project/features/onboarding/on_boarding.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding_three.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding_two.dart';
+import 'package:studex_graduation_project/features/quiz/screens/create_quizz.dart';
+import 'package:studex_graduation_project/features/quiz/screens/leaderboard_screen.dart';
+import 'package:studex_graduation_project/features/rooms/screens/create_room.dart';
+import 'package:studex_graduation_project/features/settings/settings_screen.dart';
 
 import 'app_routes.dart';
 
 class RouterGenerationConfig {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: AppRoutes.monitoringPanel,
+    initialLocation: AppRoutes.onBoarding,
     routes: [
       GoRoute(
         path: AppRoutes.onBoarding,
@@ -45,6 +49,28 @@ class RouterGenerationConfig {
         builder: (context, state) => const MonitoringPanelScreen(),
         name: AppRoutes.monitoringPanel,
       ),
+      GoRoute(
+        path: AppRoutes.leaderboardScreen,
+        builder: (context, state) => const LeaderboardScreen(),
+        name: AppRoutes.leaderboardScreen,
+      ),
+      GoRoute(
+        path: AppRoutes.settingsScreen,
+        builder: (context, state) => const SettingsScreen(),
+        name: AppRoutes.settingsScreen,
+      ),
+      GoRoute(
+        path: AppRoutes.createRoomScreen,
+        builder: (context, state) => const CreateRoom(),
+        name: AppRoutes.createRoomScreen,
+      ),
+      GoRoute(
+        path: AppRoutes.createQuizz,
+        builder: (context, state) => const CreateQuizz(),
+        name: AppRoutes.createQuizz,
+      ),
+
+
     ],
   );
 }

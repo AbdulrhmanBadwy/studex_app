@@ -6,6 +6,7 @@ import 'package:studex_graduation_project/core/widgets/spacing.dart';
 import 'package:studex_graduation_project/routes/app_routes.dart';
 
 import '../../core/constants/assets_paths.dart';
+import '../../core/theme/app_colors.dart';
 import '../widgets/custom_botton.dart';
 
 class OnBoardingTwo extends StatefulWidget {
@@ -19,7 +20,7 @@ class _OnBoardingTwoState extends State<OnBoardingTwo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: AppColors.whiteColor,
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 25.w),
         child: Column(
@@ -51,8 +52,8 @@ class _OnBoardingTwoState extends State<OnBoardingTwo> {
 
             Spacer(),
             Center(
-              child: CustomBotton(
-                onTap: () {
+              child: CustomButton(
+                onPressed: () {
                   GoRouter.of(context).pushNamed(AppRoutes.onBoardingThree);
                 },
                 text: 'Next',
