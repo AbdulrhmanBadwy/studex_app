@@ -29,7 +29,7 @@ class AppStyles{
       fontSize: 30, fontWeight: FontWeight.bold,color:AppColors.blackBgColor
   );
   static TextStyle bold16black = GoogleFonts.inter(
-      fontSize: 16, fontWeight: FontWeight.bold,color: AppColors.blackBgColor
+      fontSize: 16, fontWeight: FontWeight.bold,color: AppColors.blackBgColor,
   );
   static TextStyle medium16black = GoogleFonts.inter(
       fontSize: 16, fontWeight: FontWeight.w500,color: AppColors.blackBgColor

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:studex_graduation_project/core/theme/app_styles.dart';
 import 'package:studex_graduation_project/features/widgets/dashboard_item.dart';
 
 class DashboardSection extends StatelessWidget {

@@ -9,13 +9,14 @@ import 'package:studex_graduation_project/features/quiz/screens/create_quizz.dar
 import 'package:studex_graduation_project/features/quiz/screens/leaderboard_screen.dart';
 import 'package:studex_graduation_project/features/quiz/screens/start_quiz_screen.dart';
 import 'package:studex_graduation_project/features/rooms/screens/create_room.dart';
-import 'package:studex_graduation_project/features/settings/settings_screen.dart';
+import 'package:studex_graduation_project/features/settings/screens/edit_profile_screen.dart';
+import 'package:studex_graduation_project/features/settings/screens/settings_screen.dart';
 
 import 'app_routes.dart';
 
 class RouterGenerationConfig {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: AppRoutes.startQuiz,
+    initialLocation: AppRoutes.editProfileScreen,
     routes: [
       GoRoute(
         path: AppRoutes.onBoarding,
@@ -75,6 +76,17 @@ class RouterGenerationConfig {
         builder: (context, state) => const StartQuizScreen(),
         name: AppRoutes.startQuiz,
       ),
+      GoRoute(
+        path: AppRoutes.monitoringDashboardScreen,
+        builder: (context, state) => const MonitoringPanelScreen(),
+        name: AppRoutes.monitoringDashboardScreen,
+      ),
+      GoRoute(
+        path: AppRoutes.editProfileScreen,
+        builder: (context, state) => const ProfileEditScreen(),
+        name: AppRoutes.editProfileScreen,
+      ),
+
     ],
   );
 }

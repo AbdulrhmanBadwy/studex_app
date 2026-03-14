@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:studex_graduation_project/core/theme/app_colors.dart';
 import 'package:studex_graduation_project/core/theme/app_styles.dart';
 
 class PerformanceChartSection extends StatefulWidget {
@@ -32,6 +31,7 @@ class _PerformanceChartSectionState extends State<PerformanceChartSection> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
 
+                Text('تطور الأداء', style: AppStyles.bold16black),
                 DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
                     value: selected,
@@ -52,7 +52,6 @@ class _PerformanceChartSectionState extends State<PerformanceChartSection> {
                     },
                   ),
                 ),
-                Text('تطور الأداء', style: AppStyles.bold16black),
               ],
             ),
           ),
