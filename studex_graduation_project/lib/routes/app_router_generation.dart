@@ -10,6 +10,7 @@ import 'package:studex_graduation_project/features/quiz/screens/create_quizz.dar
 import 'package:studex_graduation_project/features/quiz/screens/leaderboard_screen.dart';
 import 'package:studex_graduation_project/features/quiz/screens/start_quiz_screen.dart';
 import 'package:studex_graduation_project/features/rooms/screens/create_room.dart';
+import 'package:studex_graduation_project/features/rooms/screens/rooms_list.dart';
 import 'package:studex_graduation_project/features/settings/screens/edit_profile_screen.dart';
 import 'package:studex_graduation_project/features/settings/screens/settings_screen.dart';
 
@@ -17,7 +18,7 @@ import 'app_routes.dart';
 
 class RouterGenerationConfig {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: AppRoutes.homeScreen,
+    initialLocation: AppRoutes.roomListScreen,
     routes: [
       GoRoute(
         path: AppRoutes.onBoarding,
@@ -91,6 +92,11 @@ class RouterGenerationConfig {
         path: AppRoutes.homeScreen,
         builder: (context, state) => const HomeScreen(),
         name: AppRoutes.homeScreen,
+      ),
+      GoRoute(
+        path: AppRoutes.roomListScreen,
+        builder: (context, state) => const RoomsListScreen(),
+        name: AppRoutes.roomListScreen,
       ),
 
     ],

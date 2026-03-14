@@ -15,4 +15,5 @@ class AppRoutes {
   static const monitoringDashboardScreen = '/monitoring_dashboard_screen';
   static const editProfileScreen = '/edit_profile_Screen';
   static const homeScreen = '/home_screen';
+  static const roomListScreen = '/room_list_screen';
 }
