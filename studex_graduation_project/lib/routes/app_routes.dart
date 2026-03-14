@@ -14,4 +14,5 @@ class AppRoutes {
   static const startQuiz= '/start_quiz';
   static const monitoringDashboardScreen = '/monitoring_dashboard_screen';
   static const editProfileScreen = '/edit_profile_Screen';
+  static const homeScreen = '/home_screen';
 }

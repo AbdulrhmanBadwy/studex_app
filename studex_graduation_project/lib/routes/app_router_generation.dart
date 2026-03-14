@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:studex_graduation_project/features/auth/login/login_screen.dart';
 import 'package:studex_graduation_project/features/auth/register/register_screen.dart';
+import 'package:studex_graduation_project/features/homescreen/home_screen.dart';
 import 'package:studex_graduation_project/features/monitoringPanel/dashboard_screen.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding_three.dart';
@@ -16,7 +17,7 @@ import 'app_routes.dart';
 
 class RouterGenerationConfig {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: AppRoutes.editProfileScreen,
+    initialLocation: AppRoutes.homeScreen,
     routes: [
       GoRoute(
         path: AppRoutes.onBoarding,
@@ -85,6 +86,11 @@ class RouterGenerationConfig {
         path: AppRoutes.editProfileScreen,
         builder: (context, state) => const ProfileEditScreen(),
         name: AppRoutes.editProfileScreen,
+      ),
+      GoRoute(
+        path: AppRoutes.homeScreen,
+        builder: (context, state) => const HomeScreen(),
+        name: AppRoutes.homeScreen,
       ),
 
     ],
