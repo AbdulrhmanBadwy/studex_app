@@ -8,6 +8,7 @@ import 'package:studex_graduation_project/features/onboarding/on_boarding_three.
 import 'package:studex_graduation_project/features/onboarding/on_boarding_two.dart';
 import 'package:studex_graduation_project/features/quiz/screens/create_quizz.dart';
 import 'package:studex_graduation_project/features/quiz/screens/leaderboard_screen.dart';
+import 'package:studex_graduation_project/features/quiz/screens/quiz_result_screen.dart';
 import 'package:studex_graduation_project/features/quiz/screens/start_quiz_screen.dart';
 import 'package:studex_graduation_project/features/quiz/screens/take_quiz_screen.dart';
 import 'package:studex_graduation_project/features/rooms/screens/create_room.dart';
@@ -18,7 +19,7 @@ import 'package:studex_graduation_project/features/settings/screens/settings_scr
 import 'package:studex_graduation_project/routes/app_routes.dart';
 
 final GoRouter goRouter = GoRouter(
-  initialLocation: AppRoutes.roomChatScreen,
+  initialLocation: AppRoutes.quizResultScreen,
   routes: [
     GoRoute(
       path: AppRoutes.onBoarding,
@@ -104,6 +105,11 @@ final GoRouter goRouter = GoRouter(
       path: AppRoutes.roomChatScreen,
       builder: (context, state) => const RoomChatScreen(),
       name: AppRoutes.roomChatScreen,
+    ),
+    GoRoute(
+      path: AppRoutes.quizResultScreen,
+      builder: (context, state) => const QuizResultScreen(),
+      name: AppRoutes.quizResultScreen,
     ),
   ],
 );

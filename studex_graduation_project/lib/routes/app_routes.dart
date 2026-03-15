@@ -16,4 +16,6 @@ class AppRoutes {
   static const homeScreen = '/home_screen';
   static const roomListScreen = '/room_list_screen';
   static const roomChatScreen = '/room_chat_screen';
+  static const quizResultScreen = '/quiz_result_screen';
+
 }
