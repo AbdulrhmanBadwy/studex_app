@@ -11,7 +11,7 @@ import 'package:studex_graduation_project/features/settings/widgets/custom_item_
 import 'package:studex_graduation_project/features/settings/widgets/custom_language_item.dart';
 import 'package:studex_graduation_project/routes/app_routes.dart';
 
-import '../../core/widgets/spacing.dart';
+import '../../../core/widgets/spacing.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});

@@ -39,7 +39,7 @@ class _ExamGradesSectionState extends State<ExamGradesSection> {
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -52,11 +52,11 @@ class _ExamGradesSectionState extends State<ExamGradesSection> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text('درجات الإختبارات', style: AppStyles.bold16black),
               GestureDetector(
                 onTap: () {},
                 child: const Icon(Icons.more_horiz, color: Colors.grey),
               ),
-              Text('درجات الإختبارات', style: AppStyles.bold16black),
             ],
           ),
 

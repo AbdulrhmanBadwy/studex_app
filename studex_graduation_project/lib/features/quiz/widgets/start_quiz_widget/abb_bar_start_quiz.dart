@@ -25,7 +25,7 @@ class StartQuizAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       elevation: 0,
       scrolledUnderElevation: 1,
-      shadowColor: Colors.black.withOpacity(0.08),
+      shadowColor: Colors.black.withValues(alpha: 0.08),
       automaticallyImplyLeading: false,
       titleSpacing: 0,
       title: Padding(
