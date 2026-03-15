@@ -1,5 +1,24 @@
-static final GoRouter goRouter = GoRouter(
-  initialLocation: AppRoutes.roomChatScreen, 
+import 'package:go_router/go_router.dart';
+import 'package:studex_graduation_project/features/auth/login/login_screen.dart';
+import 'package:studex_graduation_project/features/auth/register/register_screen.dart';
+import 'package:studex_graduation_project/features/homescreen/home_screen.dart';
+import 'package:studex_graduation_project/features/monitoringPanel/dashboard_screen.dart';
+import 'package:studex_graduation_project/features/onboarding/on_boarding.dart';
+import 'package:studex_graduation_project/features/onboarding/on_boarding_three.dart';
+import 'package:studex_graduation_project/features/onboarding/on_boarding_two.dart';
+import 'package:studex_graduation_project/features/quiz/screens/create_quizz.dart';
+import 'package:studex_graduation_project/features/quiz/screens/leaderboard_screen.dart';
+import 'package:studex_graduation_project/features/quiz/screens/start_quiz_screen.dart';
+import 'package:studex_graduation_project/features/quiz/screens/take_quiz_screen.dart';
+import 'package:studex_graduation_project/features/rooms/screens/create_room.dart';
+import 'package:studex_graduation_project/features/rooms/screens/room_chat.dart';
+import 'package:studex_graduation_project/features/rooms/screens/rooms_list.dart';
+import 'package:studex_graduation_project/features/settings/screens/edit_profile_screen.dart';
+import 'package:studex_graduation_project/features/settings/screens/settings_screen.dart';
+import 'package:studex_graduation_project/routes/app_routes.dart';
+
+final GoRouter goRouter = GoRouter(
+  initialLocation: AppRoutes.roomChatScreen,
   routes: [
     GoRoute(
       path: AppRoutes.onBoarding,

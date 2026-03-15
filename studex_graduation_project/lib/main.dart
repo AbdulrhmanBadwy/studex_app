@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart'; // تأكد من استيراد هذه المكتبة
 import 'package:studex_graduation_project/routes/app_router_generation.dart';
+import 'package:studex_graduation_project/routes/app_router_generation.dart' as RouterGenerationConfig;
 
 import 'core/theme/app_themes.dart';
 
