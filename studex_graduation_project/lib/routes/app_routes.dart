@@ -12,4 +12,5 @@ class AppRoutes {
   static const createRoomScreen = '/create_room_screen';
   static const createQuizz = '/create_quizz';
   static const startQuiz= '/start_quiz';
+  static const takeQuiz= '/take_quiz';
 }
