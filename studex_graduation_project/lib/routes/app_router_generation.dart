@@ -19,7 +19,7 @@ import 'package:studex_graduation_project/features/settings/screens/settings_scr
 import 'package:studex_graduation_project/routes/app_routes.dart';
 
 final GoRouter goRouter = GoRouter(
-  initialLocation: AppRoutes.quizResultScreen,
+  initialLocation: AppRoutes.registerRoute,
   routes: [
     GoRoute(
       path: AppRoutes.onBoarding,

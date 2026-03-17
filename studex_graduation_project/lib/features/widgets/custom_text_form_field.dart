@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_styles.dart';
 typedef OnValidator = String? Function(String?)?;
-class CustomTextFormField extends StatelessWidget {
+class CustomTextFormFieldd extends StatelessWidget {
   final Color borderSideColor;
   final String? hintText;
   final String? labelText;
@@ -16,7 +16,7 @@ class CustomTextFormField extends StatelessWidget {
   final int? maxLines;
   final bool? obscureText;
   final TextEditingController controller;
-  const CustomTextFormField({super.key,this.borderSideColor = AppColors.greyColor,
+  const CustomTextFormFieldd({super.key,this.borderSideColor = AppColors.greyColor,
     this.hintStyle , this.hintText , this.labelStyle , this.labelText,
     this.prefixIcon , this.suffixIcon,
     this.validator,

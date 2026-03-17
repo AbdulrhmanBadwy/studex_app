@@ -23,6 +23,8 @@ class AssetsPaths {
   static const String privateRoom = 'assets/images/private_room.svg';
   static const String createRoom = 'assets/images/create_room_icon.svg';
   static const String editProfile = 'assets/images/editProfile.svg';
+  static const String iconCreate = 'assets/images/icon_create.png';
+  static const String iconName = 'assets/images/icon_name.png';
 
 
 }
