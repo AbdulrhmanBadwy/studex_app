@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:studex_graduation_project/core/widgets/no_internet_screen.dart';
 import 'package:studex_graduation_project/features/auth/login/login_screen.dart';
 import 'package:studex_graduation_project/features/auth/register/register_screen.dart';
 import 'package:studex_graduation_project/features/homescreen/home_screen.dart';
@@ -6,6 +7,8 @@ import 'package:studex_graduation_project/features/monitoringPanel/dashboard_scr
 import 'package:studex_graduation_project/features/onboarding/on_boarding.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding_three.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding_two.dart';
+import 'package:studex_graduation_project/features/quiz/screens/create_quiz_step_one.dart';
+import 'package:studex_graduation_project/features/quiz/screens/create_quiz_step_two.dart';
 import 'package:studex_graduation_project/features/quiz/screens/create_quizz.dart';
 import 'package:studex_graduation_project/features/quiz/screens/leaderboard_screen.dart';
 import 'package:studex_graduation_project/features/quiz/screens/quiz_result_screen.dart';
@@ -19,7 +22,7 @@ import 'package:studex_graduation_project/features/settings/screens/settings_scr
 import 'package:studex_graduation_project/routes/app_routes.dart';
 
 final GoRouter goRouter = GoRouter(
-  initialLocation: AppRoutes.quizResultScreen,
+  initialLocation: AppRoutes.registerRoute,
   routes: [
     GoRoute(
       path: AppRoutes.onBoarding,
@@ -110,6 +113,35 @@ final GoRouter goRouter = GoRouter(
       path: AppRoutes.quizResultScreen,
       builder: (context, state) => const QuizResultScreen(),
       name: AppRoutes.quizResultScreen,
+    ),
+    GoRoute(
+      path: AppRoutes.createQuizStepOne,
+      name: AppRoutes.createQuizStepOne,
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>? ?? {};
+        return CreateQuizStepOne(
+          quizTitle: extra['quizTitle'] ?? '',
+          quizDescription: extra['quizDescription'] ?? '',
+          timePerQuestion: extra['timePerQuestion'] ?? 30,
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.createQuizStepTwo,
+      name: AppRoutes.createQuizStepTwo,
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>? ?? {};
+        return CreateQuizStepTwo(
+          quizTitle: extra['quizTitle'] ?? '',
+          questionsCount: extra['questionsCount'] ?? 0,
+          timePerQuestion: extra['timePerQuestion'] ?? 30,
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.noInternet,
+      name: AppRoutes.noInternet,
+      builder: (context, state) => const NoInternetScreen(),
     ),
   ],
 );

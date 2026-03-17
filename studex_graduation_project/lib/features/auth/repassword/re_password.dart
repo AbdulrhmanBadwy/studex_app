@@ -44,7 +44,7 @@ class _RePasswordState extends State<RePassword> {
                children: [
                  Text('Enter Email',style: AppStyles.bold16black,),
                  SizedBox(height: 5,),
-                 CustomTextFormField(
+                 CustomTextFormFieldd(
                    hintText: 'Email',
                    prefixIcon: Image.asset(AssetsPaths.logoEmail),
                    keyboardType: TextInputType.emailAddress,

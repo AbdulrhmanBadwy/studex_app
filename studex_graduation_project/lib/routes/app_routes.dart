@@ -17,5 +17,7 @@ class AppRoutes {
   static const roomListScreen = '/room_list_screen';
   static const roomChatScreen = '/room_chat_screen';
   static const quizResultScreen = '/quiz_result_screen';
-
+  static const createQuizStepOne = '/create_quiz_step_one';
+  static const createQuizStepTwo = '/create_quiz_step_two';
+  static const noInternet = '/no_internet';
 }

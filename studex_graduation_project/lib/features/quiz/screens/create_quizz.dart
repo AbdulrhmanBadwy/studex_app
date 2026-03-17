@@ -6,6 +6,7 @@ import 'package:studex_graduation_project/features/rooms/widgets/custom_create_r
 import 'package:studex_graduation_project/features/rooms/widgets/custom_text_form_field.dart';
 
 import '../../rooms/widgets/custom_headline_create_room.dart';
+import '../../../routes/app_routes.dart';
 
 class CreateQuizz extends StatefulWidget {
   const CreateQuizz({super.key});
@@ -16,6 +17,18 @@ class CreateQuizz extends StatefulWidget {
 
 class _CreateQuizzState extends State<CreateQuizz> {
   bool isPublic = true;
+
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _timeController = TextEditingController();
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _descriptionController.dispose();
+    _timeController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +44,7 @@ class _CreateQuizzState extends State<CreateQuizz> {
                 CustomHeadlineCreateRoom(
                   title: 'إنشاء أختبار جديد',
                   onPressed: () {
-                    GoRouter.of(context).pop;
+                    GoRouter.of(context).pop();
                   },
                 ),
                 HeightSpacing(18),
@@ -43,7 +56,8 @@ class _CreateQuizzState extends State<CreateQuizz> {
                 ),
                 HeightSpacing(8),
                 CustomTextFormField(
-                  hintText: 'مثال : اختبار علي شابتر 1 لغات صورية ',
+                  hintText: 'مثال : اختبار علي شابتر 1 لغات صورية',
+                  controller: _titleController,
                 ),
                 HeightSpacing(24),
                 Text(
@@ -57,6 +71,7 @@ class _CreateQuizzState extends State<CreateQuizz> {
                   hintText: 'أضف تفاصيل إضافية للطلاب',
                   heigh: 150,
                   maxLines: null,
+                  controller: _descriptionController,
                 ),
                 HeightSpacing(24),
                 Text(
@@ -69,10 +84,23 @@ class _CreateQuizzState extends State<CreateQuizz> {
                 CustomTextFormField(
                   hintText: '30',
                   suffixIcon: Icon(Icons.timer),
+                  controller: _timeController,
                 ),
                 HeightSpacing(76),
-                CustomCreateRoomButton(onPressed: (){} , text: 'التالي',)
-
+                CustomCreateRoomButton(
+                  text: 'التالي',
+                  onPressed: () {
+                    GoRouter.of(context).pushNamed(
+                      AppRoutes.createQuizStepOne,
+                      extra: {
+                        'quizTitle': _titleController.text,
+                        'quizDescription': _descriptionController.text,
+                        'timePerQuestion':
+                        int.tryParse(_timeController.text) ?? 30,
+                      },
+                    );
+                  },
+                ),
               ],
             ),
           ),

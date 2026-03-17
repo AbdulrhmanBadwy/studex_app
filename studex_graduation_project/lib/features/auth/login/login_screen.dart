@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        CustomTextFormField(
+                        CustomTextFormFieldd(
                           hintText: 'Email',
                           prefixIcon: Image.asset(AssetsPaths.logoEmail),
                           keyboardType: TextInputType.emailAddress,
@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                         ),
                         SizedBox(height: height*0.02,),
-                        CustomTextFormField(
+                        CustomTextFormFieldd(
                           hintText: 'Password',
                           prefixIcon: Image.asset(AssetsPaths.logoPassword),
                           suffixIcon: Image.asset(AssetsPaths.logoShowPassword),
