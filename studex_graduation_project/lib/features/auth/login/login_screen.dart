@@ -87,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: TextButton(onPressed: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context) => RePassword(),));
                           },
-                              child: Text('Forget Password?',
+                              child: Text('?Forget Password',
                                 style: AppStyles.bold16primary.copyWith(
                                     decoration: TextDecoration.underline,
                                     decorationColor: AppColors.primaryLight
