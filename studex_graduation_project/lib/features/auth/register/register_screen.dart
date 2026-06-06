@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:studex_graduation_project/core/theme/app_colors.dart';
 import 'package:studex_graduation_project/core/theme/app_styles.dart';
 import 'package:studex_graduation_project/features/auth/login/login_screen.dart';
@@ -154,7 +155,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void CreateAccount(){
     if(formKey.currentState?.validate() == true){
-      Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.homeScreen, (route) => false,);
+      context.go(AppRoutes.homeScreen);
+      //Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.homeScreen, (route) => false,);
     }
   }
 }

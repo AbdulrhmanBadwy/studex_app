@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_styles.dart';
-typedef OnValidator = String? Function(String?)?;
+//typedef OnValidator = String? Function(String?)?;
 class CustomTextFormFieldd extends StatelessWidget {
   final Color borderSideColor;
   final String? hintText;
@@ -11,7 +11,7 @@ class CustomTextFormFieldd extends StatelessWidget {
   final TextStyle? labelStyle;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
-  final OnValidator? validator;
+  final FormFieldValidator<String>? validator;
   final TextInputType? keyboardType;
   final int? maxLines;
   final bool? obscureText;

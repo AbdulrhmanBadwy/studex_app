@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:studex_graduation_project/core/constants/assets_paths.dart';
 import 'package:studex_graduation_project/features/auth/repassword/re_password.dart';
+import 'package:studex_graduation_project/routes/app_router_generation.dart';
 
 
 import '../../../core/theme/app_colors.dart';
@@ -168,7 +170,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void login(){
     if(formKey.currentState?.validate() == true){
-      Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.registerRoute, (route) => false,);
+      context.go(AppRoutes.homeScreen);
+      //Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.homeScreen, (route) => false,);
     }
   }
 }
