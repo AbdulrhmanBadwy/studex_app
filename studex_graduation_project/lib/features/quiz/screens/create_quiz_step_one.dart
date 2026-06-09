@@ -6,7 +6,7 @@ import 'package:studex_graduation_project/core/theme/app_styles.dart';
 import 'package:studex_graduation_project/core/widgets/spacing.dart';
 import 'package:studex_graduation_project/features/quiz/widgets/create_quiz_widget/add_question_card.dart';
 import 'package:studex_graduation_project/features/quiz/widgets/create_quiz_widget/quiz_stepper.dart';
-import 'package:studex_graduation_project/routes/app_routes.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 
 class CreateQuizStepOne extends StatefulWidget {
   final String quizTitle;

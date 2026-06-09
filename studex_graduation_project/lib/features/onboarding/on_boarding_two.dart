@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:studex_graduation_project/core/theme/app_styles.dart';
 import 'package:studex_graduation_project/core/widgets/spacing.dart';
-import 'package:studex_graduation_project/routes/app_routes.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 
 import '../../core/constants/assets_paths.dart';
 import '../../core/theme/app_colors.dart';

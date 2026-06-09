@@ -6,7 +6,7 @@ import 'package:studex_graduation_project/features/rooms/widgets/custom_create_r
 import 'package:studex_graduation_project/features/rooms/widgets/custom_text_form_field.dart';
 
 import '../../rooms/widgets/custom_headline_create_room.dart';
-import '../../../routes/app_routes.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 
 class CreateQuizz extends StatefulWidget {
   const CreateQuizz({super.key});

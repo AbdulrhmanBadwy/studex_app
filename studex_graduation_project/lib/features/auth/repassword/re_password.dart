@@ -3,7 +3,7 @@ import 'package:studex_graduation_project/core/constants/assets_paths.dart';
 import 'package:studex_graduation_project/core/theme/app_colors.dart';
 
 import '../../../core/theme/app_styles.dart';
-import '../../../routes/app_routes.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 import '../../widgets/custom_botton.dart';
 import '../../widgets/custom_text_form_field.dart';
 

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_localizations/flutter_localizations.dart'; // تأكد من استيراد هذه المكتبة
-import 'package:studex_graduation_project/routes/app_router_generation.dart';
-import 'package:studex_graduation_project/routes/app_router_generation.dart' as RouterGenerationConfig;
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:studex_graduation_project/core/routes/app_router_generation.dart';
+import 'package:studex_graduation_project/core/routes/app_router_generation.dart' as RouterGenerationConfig;
 
+import 'core/config/app_config.dart';
+import 'core/config/firebase_config.dart';
 import 'core/theme/app_themes.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FirebaseConfig.initialize();
   runApp(const MyApp());
 }
 
@@ -16,20 +20,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(390, 884),
+      designSize: AppConfig.designSize,
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          title: 'Studex App',
+          debugShowCheckedModeBanner: AppConfig.showDebugBanner,
+          title: AppConfig.appName,
           theme: AppThemes.lightTheme,
 
-          locale: const Locale('ar', 'EG'),
-          supportedLocales: const [
-            Locale('ar', 'EG'),
-            Locale('en', 'US'),
-          ],
+          locale: AppConfig.defaultLocale,
+          supportedLocales: AppConfig.supportedLocales,
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,

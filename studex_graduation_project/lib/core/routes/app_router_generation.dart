@@ -19,7 +19,7 @@ import 'package:studex_graduation_project/features/rooms/screens/room_chat.dart'
 import 'package:studex_graduation_project/features/rooms/screens/rooms_list.dart';
 import 'package:studex_graduation_project/features/settings/screens/edit_profile_screen.dart';
 import 'package:studex_graduation_project/features/settings/screens/settings_screen.dart';
-import 'package:studex_graduation_project/routes/app_routes.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 
 final GoRouter goRouter = GoRouter(
   initialLocation: AppRoutes.registerRoute,

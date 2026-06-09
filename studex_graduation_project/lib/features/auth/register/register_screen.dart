@@ -7,7 +7,7 @@ import 'package:studex_graduation_project/features/widgets/custom_elevated_botto
 import 'package:studex_graduation_project/features/widgets/custom_text_form_field.dart';
 
 import '../../../core/constants/assets_paths.dart';
-import '../../../routes/app_routes.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 
 
 class RegisterScreen extends StatefulWidget {
@@ -56,6 +56,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       prefixIcon: Image.asset(AssetsPaths.iconName),
                       keyboardType: TextInputType.name,
                       controller: nameController,
+                      validator: (text){
+                        if(text == null || text.trim().isEmpty){
+                          return ('please Enter name');
+                        }
+                        return null;
+                      },
                     ),
                         SizedBox(height: height*0.02,),
                         Text('Email',style: AppStyles.medium16black,),
@@ -111,13 +117,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         SizedBox(height: height*0.02,),
                         Text('University',style: AppStyles.medium16black,),
-                        CustomDropdownButtonFormField(),
+                        CustomDropdownButtonFormField(type: DropdownType.university,),
                         SizedBox(height: height*0.02,),
                         Text('Section',style: AppStyles.medium16black,),
-                        CustomDropdownButtonFormField(),
+                        CustomDropdownButtonFormField(type: DropdownType.major),
                         SizedBox(height: height*0.02,),
                         Text('Academic Year',style: AppStyles.medium16black,),
-                        CustomDropdownButtonFormField(),
+                        CustomDropdownButtonFormField(type: DropdownType.year),
                         SizedBox(height: height*0.04,),
                         CustomElevatedButton(
                             text: 'Create Account',

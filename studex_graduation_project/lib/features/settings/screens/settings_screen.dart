@@ -9,7 +9,7 @@ import 'package:studex_graduation_project/features/settings/widgets/custom_headl
 import 'package:studex_graduation_project/features/settings/widgets/custom_item_in_settings.dart';
 import 'package:studex_graduation_project/features/settings/widgets/custom_item_notication.dart';
 import 'package:studex_graduation_project/features/settings/widgets/custom_language_item.dart';
-import 'package:studex_graduation_project/routes/app_routes.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 
 import '../../../core/widgets/spacing.dart';
 

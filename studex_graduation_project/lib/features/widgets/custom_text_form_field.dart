@@ -33,9 +33,15 @@ class CustomTextFormFieldd extends StatelessWidget {
       obscureText: obscureText!,
       controller: controller,
       maxLines: maxLines,
+      style: TextStyle(
+        color: AppColors.blackBgColor,
+        fontWeight: FontWeight.bold,
+        fontSize: 18,
+      ),
       decoration: InputDecoration(
+        focusColor: AppColors.blackBgColor,
         enabledBorder:builtDecorationBorder(borderSideColor: borderSideColor),
-        focusedBorder: builtDecorationBorder(borderSideColor: borderSideColor),
+        focusedBorder: builtDecorationBorder(borderSideColor: borderSideColor,),
         errorBorder: builtDecorationBorder(borderSideColor: AppColors.redColor),
         focusedErrorBorder: builtDecorationBorder(borderSideColor: AppColors.redColor),
         hintText: hintText,
