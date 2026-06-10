@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/user_model.dart';
+import '../core/constants/user_roles.dart';
 
 abstract class AuthRepository {
   Stream<UserModel?> get authStateChanges;
@@ -21,7 +22,7 @@ class FirebaseAuthRepository implements AuthRepository {
       uid: user.uid,
       email: user.email ?? '',
       name: user.displayName ?? '',
-      role: 'student', // default role
+      role: UserRoles.student, // default role
     );
   }
 

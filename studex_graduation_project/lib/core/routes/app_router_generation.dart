@@ -6,6 +6,7 @@ import 'package:studex_graduation_project/features/homescreen/home_screen.dart';
 import 'package:studex_graduation_project/features/monitoringPanel/dashboard_screen.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding_three.dart';
+import 'package:studex_graduation_project/features/auth/splash_screen.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding_two.dart';
 import 'package:studex_graduation_project/features/quiz/screens/create_quiz_step_one.dart';
 import 'package:studex_graduation_project/features/quiz/screens/create_quiz_step_two.dart';
@@ -22,7 +23,7 @@ import 'package:studex_graduation_project/features/settings/screens/settings_scr
 import 'package:studex_graduation_project/core/routes/app_routes.dart';
 
 final GoRouter goRouter = GoRouter(
-  initialLocation: AppRoutes.registerRoute,
+  initialLocation: AppRoutes.splash,
   routes: [
     GoRoute(
       path: AppRoutes.onBoarding,
@@ -38,6 +39,11 @@ final GoRouter goRouter = GoRouter(
       path: AppRoutes.onBoardingThree,
       builder: (context, state) => const OnBoardingThree(),
       name: AppRoutes.onBoardingThree,
+    ),
+    GoRoute(
+      path: AppRoutes.splash,
+      builder: (context, state) => const SplashScreen(),
+      name: AppRoutes.splash,
     ),
     GoRoute(
       path: AppRoutes.loginRoute,

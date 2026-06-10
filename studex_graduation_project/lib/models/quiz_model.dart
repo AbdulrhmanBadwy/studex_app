@@ -13,6 +13,22 @@ class QuizModel {
     required this.creatorId,
   });
 
+  QuizModel copyWith({
+    String? id,
+    String? title,
+    String? description,
+    int? timePerQuestion,
+    String? creatorId,
+  }) {
+    return QuizModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      timePerQuestion: timePerQuestion ?? this.timePerQuestion,
+      creatorId: creatorId ?? this.creatorId,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -32,4 +48,19 @@ class QuizModel {
       creatorId: json['creatorId'] as String? ?? '',
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is QuizModel &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          title == other.title &&
+          description == other.description &&
+          timePerQuestion == other.timePerQuestion &&
+          creatorId == other.creatorId;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^ title.hashCode ^ description.hashCode ^ timePerQuestion.hashCode ^ creatorId.hashCode;
 }
