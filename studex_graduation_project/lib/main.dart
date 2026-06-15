@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:studex_graduation_project/core/routes/app_router_generation.dart';
@@ -7,6 +9,10 @@ import 'package:studex_graduation_project/core/routes/app_router_generation.dart
 import 'core/config/app_config.dart';
 import 'core/config/firebase_config.dart';
 import 'core/theme/app_themes.dart';
+import 'blocs/auth/auth_bloc.dart';
+import 'blocs/user/user_bloc.dart';
+import 'repositories/auth_repository.dart';
+import 'repositories/user_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,27 +25,37 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: AppConfig.designSize,
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return MaterialApp.router(
-          debugShowCheckedModeBanner: AppConfig.showDebugBanner,
-          title: AppConfig.appName,
-          theme: AppThemes.lightTheme,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AuthBloc(authRepository: FirebaseAuthRepository()),
+        ),
+        BlocProvider(
+          create: (context) => UserBloc(userRepository: FirestoreUserRepository()),
+        ),
+      ],
+      child: ScreenUtilInit(
+        designSize: AppConfig.designSize,
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: AppConfig.showDebugBanner,
+            title: AppConfig.appName,
+            theme: AppThemes.lightTheme,
 
-          locale: AppConfig.defaultLocale,
-          supportedLocales: AppConfig.supportedLocales,
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
+            locale: AppConfig.defaultLocale,
+            supportedLocales: AppConfig.supportedLocales,
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
 
-          routerConfig: RouterGenerationConfig.goRouter,
-        );
-      },
+            routerConfig: RouterGenerationConfig.goRouter,
+          );
+        },
+      ),
     );
   }
 }

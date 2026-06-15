@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/user_model.dart';
 import '../core/constants/user_roles.dart';
+import 'user_repository.dart';
 
 abstract class AuthRepository {
   Stream<UserModel?> get authStateChanges;
@@ -12,9 +13,13 @@ abstract class AuthRepository {
 
 class FirebaseAuthRepository implements AuthRepository {
   final FirebaseAuth _firebaseAuth;
+  final UserRepository _userRepository;
 
-  FirebaseAuthRepository({FirebaseAuth? firebaseAuth})
-      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
+  FirebaseAuthRepository({
+    FirebaseAuth? firebaseAuth,
+    UserRepository? userRepository,
+  })  : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
+        _userRepository = userRepository ?? FirestoreUserRepository();
 
   UserModel? _mapFirebaseUser(User? user) {
     if (user == null) return null;
@@ -55,7 +60,14 @@ class FirebaseAuthRepository implements AuthRepository {
       await user.updateDisplayName(name);
       await user.reload();
       final updatedUser = _firebaseAuth.currentUser;
-      return _mapFirebaseUser(updatedUser);
+      if (updatedUser != null) {
+        final userModel = _mapFirebaseUser(updatedUser);
+        if (userModel != null) {
+          // Create user profile in Firestore immediately after registration
+          await _userRepository.createUserProfile(userModel);
+        }
+        return userModel;
+      }
     }
     return _mapFirebaseUser(user);
   }
