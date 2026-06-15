@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:studex_graduation_project/core/theme/app_colors.dart';
 import 'package:studex_graduation_project/core/theme/app_styles.dart';
 import 'package:studex_graduation_project/features/auth/login/login_screen.dart';
@@ -8,6 +9,8 @@ import 'package:studex_graduation_project/features/widgets/custom_text_form_fiel
 
 import '../../../core/constants/assets_paths.dart';
 import 'package:studex_graduation_project/core/routes/app_routes.dart';
+
+import '../../../repositories/auth_repository.dart';
 
 
 class RegisterScreen extends StatefulWidget {
@@ -20,71 +23,86 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final formKey = GlobalKey<FormState>();
 
-  TextEditingController emailController =TextEditingController();
-  TextEditingController nameController =TextEditingController();
-  TextEditingController passwordController =TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    var width = MediaQuery
+        .of(context)
+        .size
+        .width;
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
         backgroundColor: AppColors.whiteColor,
-        title: Text('Create Account',style: AppStyles.bold20black,),
+        title: Text('Create Account', style: AppStyles.bold20black,),
         centerTitle: true,
 
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: width*0.02,vertical: height*0.03),
+          padding: EdgeInsets.symmetric(
+              horizontal: width * 0.02, vertical: height * 0.03),
           child: Column(
             children: [
-              Image.asset(AssetsPaths.iconCreate,width: width*0.3,height: height*0.09,),
-              Text('Studex',style: AppStyles.bold30black,),
-              Text('Welcome back to your educational journey',style: AppStyles.medium16grey,),
-              SizedBox(height: height*0.05,),
+              Image.asset(AssetsPaths.iconCreate, width: width * 0.3,
+                height: height * 0.09,),
+              Text('Studex', style: AppStyles.bold30black,),
+              Text('Welcome back to your educational journey',
+                style: AppStyles.medium16grey,),
+              SizedBox(height: height * 0.05,),
               Form(
-                  key: formKey ,
-                  child:Expanded(
+                  key: formKey,
+                  child: Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                      Text('Name',style: AppStyles.medium16black,),
-                    CustomTextFormFieldd(
-                      hintText: 'Name',
-                      prefixIcon: Image.asset(AssetsPaths.iconName),
-                      keyboardType: TextInputType.name,
-                      controller: nameController,
-                      validator: (text){
-                        if(text == null || text.trim().isEmpty){
-                          return ('please Enter name');
-                        }
-                        return null;
-                      },
-                    ),
-                        SizedBox(height: height*0.02,),
-                        Text('Email',style: AppStyles.medium16black,),
+                        Text('Name', style: AppStyles.medium16black,),
+                        CustomTextFormFieldd(
+                          hintText: 'Name',
+                          prefixIcon: Image.asset(AssetsPaths.iconName),
+                          keyboardType: TextInputType.name,
+                          controller: nameController,
+                          validator: (text) {
+                            if (text == null || text
+                                .trim()
+                                .isEmpty) {
+                              return ('please Enter name');
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: height * 0.02,),
+                        Text('Email', style: AppStyles.medium16black,),
                         CustomTextFormFieldd(
                           hintText: 'Email',
                           prefixIcon: Image.asset(AssetsPaths.logoEmail),
                           keyboardType: TextInputType.emailAddress,
                           controller: emailController,
-                          validator: (text){
-                            if(text == null || text.trim().isEmpty){
+                          validator: (text) {
+                            if (text == null || text
+                                .trim()
+                                .isEmpty) {
                               return ('please Enter Email');
                             }
                             final bool emailValid =
-                            RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            RegExp(
+                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                 .hasMatch(text);
-                            if(!emailValid){
+                            if (!emailValid) {
                               return 'please Enter Valid Email';
                             }
                             return null;
                           },
                         ),
-                        SizedBox(height: height*0.02,),
-                        Text('Password',style: AppStyles.medium16black,),
+                        SizedBox(height: height * 0.02,),
+                        Text('Password', style: AppStyles.medium16black,),
                         CustomTextFormFieldd(
                           hintText: 'Password',
                           prefixIcon: Image.asset(AssetsPaths.logoPassword),
@@ -92,15 +110,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           keyboardType: TextInputType.phone,
                           obscureText: true,
                           controller: passwordController,
-                          validator: (text){
-                            if(text == null || text.trim().isEmpty){
+                          validator: (text) {
+                            if (text == null || text
+                                .trim()
+                                .isEmpty) {
                               return ('please Enter Password');
                             }
                             return null;
                           },
                         ),
-                        SizedBox(height: height*0.02,),
-                        Text('Confirm Password',style: AppStyles.medium16black,),
+                        SizedBox(height: height * 0.02,),
+                        Text(
+                          'Confirm Password', style: AppStyles.medium16black,),
                         CustomTextFormFieldd(
                           hintText: 'Confirm Password',
                           prefixIcon: Image.asset(AssetsPaths.logoPassword),
@@ -108,34 +129,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           keyboardType: TextInputType.phone,
                           obscureText: true,
                           controller: passwordController,
-                          validator: (text){
-                            if(text == null || text.trim().isEmpty){
+                          validator: (text) {
+                            if (text == null || text
+                                .trim()
+                                .isEmpty) {
                               return ('please Enter Password');
                             }
                             return null;
                           },
                         ),
-                        SizedBox(height: height*0.02,),
-                        Text('University',style: AppStyles.medium16black,),
-                        CustomDropdownButtonFormField(type: DropdownType.university,),
-                        SizedBox(height: height*0.02,),
-                        Text('Section',style: AppStyles.medium16black,),
+                        SizedBox(height: height * 0.02,),
+                        Text('University', style: AppStyles.medium16black,),
+                        CustomDropdownButtonFormField(
+                          type: DropdownType.university,),
+                        SizedBox(height: height * 0.02,),
+                        Text('Section', style: AppStyles.medium16black,),
                         CustomDropdownButtonFormField(type: DropdownType.major),
-                        SizedBox(height: height*0.02,),
-                        Text('Academic Year',style: AppStyles.medium16black,),
+                        SizedBox(height: height * 0.02,),
+                        Text('Academic Year', style: AppStyles.medium16black,),
                         CustomDropdownButtonFormField(type: DropdownType.year),
-                        SizedBox(height: height*0.04,),
+                        SizedBox(height: height * 0.04,),
                         CustomElevatedButton(
-                            text: 'Create Account',
-                            onPressed: CreateAccount ,
+                          text: 'Create Account',
+                          onPressed: CreateAccount,
                         ),
-                        SizedBox(height: height*0.02,),
+                        SizedBox(height: height * 0.02,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text('Don\'t have an account?',
                               style: AppStyles.bold16black,),
-                            TextButton(onPressed: (){
+                            TextButton(onPressed: () {
                               Navigator.push(context, MaterialPageRoute(
                                 builder: (context) => LoginScreen(),));
                             },
@@ -149,7 +173,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ],
                     ),
-                  ) )
+                  ))
 
             ],
           ),
@@ -158,9 +182,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  void CreateAccount(){
-    if(formKey.currentState?.validate() == true){
-      Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.homeScreen, (route) => false,);
+  Future<void> CreateAccount() async {
+    if (formKey.currentState?.validate() != true) return;
+
+    try {
+      final authRepository = FirebaseAuthRepository();
+
+      await authRepository.signUp(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+        name: nameController.text.trim(),
+      );
+
+      if (!mounted) return;
+
+      context.go(AppRoutes.homeScreen);
+    } catch (e) {
+      debugPrint('REGISTER ERROR: $e');
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toString()),
+        ),
+      );
     }
   }
 }

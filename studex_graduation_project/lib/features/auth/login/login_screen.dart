@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:studex_graduation_project/core/constants/assets_paths.dart';
 import 'package:studex_graduation_project/features/auth/repassword/re_password.dart';
 
@@ -6,6 +7,7 @@ import 'package:studex_graduation_project/features/auth/repassword/re_password.d
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_styles.dart';
 import 'package:studex_graduation_project/core/routes/app_routes.dart';
+import '../../../repositories/auth_repository.dart';
 import '../../widgets/custom_botton.dart';
 import '../../widgets/custom_text_form_field.dart';
 import '../register/register_screen.dart';
@@ -166,9 +168,32 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void login(){
-    if(formKey.currentState?.validate() == true){
-      Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.registerRoute, (route) => false,);
+  // void login(){
+  //   if(formKey.currentState?.validate() == true){
+  //    // Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.registerRoute, (route) => false,);
+  //   }
+  Future<void> login() async {
+    if (formKey.currentState?.validate() != true) return;
+
+    try {
+      final authRepository = FirebaseAuthRepository();
+
+      await authRepository.signIn(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+
+      if (!mounted) return;
+
+      context.go(AppRoutes.homeScreen);
+    } catch (e) {
+      debugPrint('REGISTER ERROR: $e');
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toString()),
+        ),
+      );
     }
   }
 }
