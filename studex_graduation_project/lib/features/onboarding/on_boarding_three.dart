@@ -41,7 +41,7 @@ class _OnBoardingThreeState extends State<OnBoardingThree> {
             Center(
               child: CustomButton(
                 onPressed: () {
-                  GoRouter.of(context).pushNamed(AppRoutes.loginRoute);
+                  context.go(AppRoutes.loginRoute);
                 },
                 text: 'Start Now',
               ),

@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class SectionTitle extends StatelessWidget {
   final String title;
   final String actionText;
+  final VoidCallback? onActionTap;
   const SectionTitle({
     super.key,
     required this.title,
     required this.actionText,
+    this.onActionTap,
   });
 
   @override
@@ -22,11 +24,14 @@ class SectionTitle extends StatelessWidget {
             color: Color(0xff2D3142),
           ),
         ),
-        Text(
-          actionText,
-          style: const TextStyle(
-            color: Color(0xff6A6EF6),
-            fontWeight: FontWeight.w600,
+        GestureDetector(
+          onTap: onActionTap,
+          child: Text(
+            actionText,
+            style: const TextStyle(
+              color: Color(0xff6A6EF6),
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ],

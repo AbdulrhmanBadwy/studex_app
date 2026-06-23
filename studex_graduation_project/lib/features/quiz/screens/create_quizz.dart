@@ -44,7 +44,7 @@ class _CreateQuizzState extends State<CreateQuizz> {
                 CustomHeadlineCreateRoom(
                   title: 'إنشاء أختبار جديد',
                   onPressed: () {
-                    GoRouter.of(context).pop();
+                    context.pop();
                   },
                 ),
                 HeightSpacing(18),
@@ -90,13 +90,13 @@ class _CreateQuizzState extends State<CreateQuizz> {
                 CustomCreateRoomButton(
                   text: 'التالي',
                   onPressed: () {
-                    GoRouter.of(context).pushNamed(
+                    context.pushNamed(
                       AppRoutes.createQuizStepOne,
                       extra: {
                         'quizTitle': _titleController.text,
                         'quizDescription': _descriptionController.text,
                         'timePerQuestion':
-                        int.tryParse(_timeController.text) ?? 30,
+                            int.tryParse(_timeController.text) ?? 30,
                       },
                     );
                   },

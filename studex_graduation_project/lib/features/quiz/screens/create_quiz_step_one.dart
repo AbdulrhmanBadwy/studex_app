@@ -48,12 +48,11 @@ class _CreateQuizStepOneState extends State<CreateQuizStepOne> {
             children: [
               // AppBar row
               Padding(
-                padding:
-                EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                 child: Row(
                   children: [
                     IconButton(
-                      onPressed: () => GoRouter.of(context).pop(),
+                      onPressed: () => context.pop(),
                       icon: Icon(
                         Icons.arrow_back,
                         size: 24.sp,
@@ -76,13 +75,15 @@ class _CreateQuizStepOneState extends State<CreateQuizStepOne> {
               Expanded(
                 child: SingleChildScrollView(
                   padding: EdgeInsets.symmetric(
-                      horizontal: 16.w, vertical: 8.h),
+                    horizontal: 16.w,
+                    vertical: 8.h,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ...List.generate(
                         _questionCount,
-                            (index) => AddQuestionCard(
+                        (index) => AddQuestionCard(
                           questionNumber: index + 1,
                           onDelete: _questionCount > 1
                               ? () => _removeQuestion(index)
@@ -108,9 +109,11 @@ class _CreateQuizStepOneState extends State<CreateQuizStepOne> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.add_circle_outline,
-                                  color: const Color(0xff6366F1),
-                                  size: 20.sp),
+                              Icon(
+                                Icons.add_circle_outline,
+                                color: const Color(0xff6366F1),
+                                size: 20.sp,
+                              ),
                               SizedBox(width: 8.w),
                               Text(
                                 'إضافة سؤال آخر',
@@ -136,14 +139,13 @@ class _CreateQuizStepOneState extends State<CreateQuizStepOne> {
 
         // Next button
         bottomNavigationBar: Padding(
-          padding:
-          EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: SizedBox(
             width: double.infinity,
             height: 56.h,
             child: ElevatedButton(
               onPressed: () {
-                GoRouter.of(context).pushNamed(
+                context.pushNamed(
                   AppRoutes.createQuizStepTwo,
                   extra: {
                     'quizTitle': widget.quizTitle,
@@ -172,8 +174,7 @@ class _CreateQuizStepOneState extends State<CreateQuizStepOne> {
                     ),
                   ),
                   SizedBox(width: 8.w),
-                  Icon(Icons.arrow_back,
-                      color: Colors.white, size: 20.sp),
+                  Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
                 ],
               ),
             ),

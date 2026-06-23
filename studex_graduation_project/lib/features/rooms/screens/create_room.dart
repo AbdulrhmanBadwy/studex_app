@@ -33,7 +33,7 @@ class _CreateRoomState extends State<CreateRoom> {
                 CustomHeadlineCreateRoom(
                   title: 'إنشاء غرفة جديدة',
                   onPressed: () {
-                    GoRouter.of(context).pop;
+                    context.pop();
                   },
                 ),
                 HeightSpacing(18),
@@ -89,8 +89,12 @@ class _CreateRoomState extends State<CreateRoom> {
                   ),
                 ),
                 HeightSpacing(143),
-                CustomCreateRoomButton(onPressed: (){} , text: 'إنشاء الغرفة',)
-
+                CustomCreateRoomButton(
+                  onPressed: () {
+                    // TODO: submit the room creation flow and open the new room.
+                  },
+                  text: 'إنشاء الغرفة',
+                ),
               ],
             ),
           ),

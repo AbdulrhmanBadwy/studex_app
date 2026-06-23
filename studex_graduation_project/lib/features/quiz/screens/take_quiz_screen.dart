@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:studex_graduation_project/core/theme/app_colors.dart';
 import 'package:studex_graduation_project/core/theme/app_styles.dart';
 import 'package:studex_graduation_project/features/quiz/widgets/takeQuizWidget/quiz_progress.dart';
@@ -26,6 +27,7 @@ class _TakeQuizScreenState extends State<TakeQuizScreen> {
         currentQuestion: 2,
         totalQuestions: 10,
         remainingSeconds: 1000,
+        onClose: () => context.pop(),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.w),
@@ -59,7 +61,9 @@ class _TakeQuizScreenState extends State<TakeQuizScreen> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // TODO: move to the next quiz question or result screen when quiz state is wired.
+                },
 
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primaryAllColor,

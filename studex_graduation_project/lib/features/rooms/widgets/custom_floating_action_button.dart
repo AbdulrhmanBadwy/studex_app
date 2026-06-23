@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 
 import '../../../core/theme/app_colors.dart';
 
@@ -9,11 +11,9 @@ class CustomFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
-      onPressed: () {},
+      onPressed: () => context.pushNamed(AppRoutes.createRoomScreen),
       backgroundColor: AppColors.primaryAllColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(90.r),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(90.r)),
       icon: const Icon(Icons.add, color: Colors.white),
       label: const Text(
         "إنشاء غرفة",

@@ -63,7 +63,12 @@ class RoomsListScreen extends StatelessWidget {
         style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
       ),
       centerTitle: true,
-      leading: _iconBox(Icons.notifications_none),
+      leading: IconButton(
+        onPressed: () {
+          // TODO: add notifications screen for room alerts.
+        },
+        icon: _iconBox(Icons.notifications_none),
+      ),
     );
   }
 
@@ -78,4 +83,3 @@ class RoomsListScreen extends StatelessWidget {
     );
   }
 }
-

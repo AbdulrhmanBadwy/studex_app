@@ -29,7 +29,7 @@ class _OnBoardingState extends State<OnBoarding> {
           children: [
             TextButton(
               onPressed: () {
-                GoRouter.of(context).pushNamed(AppRoutes.loginRoute);
+                context.go(AppRoutes.loginRoute);
               },
               child: Text(
                 'Skip',
@@ -39,12 +39,12 @@ class _OnBoardingState extends State<OnBoarding> {
                 ),
               ),
             ),
-            Image.asset(AssetsPaths.onboard , width: 340.w , height: 340.h,),
+            Image.asset(AssetsPaths.onboard, width: 340.w, height: 340.h),
             Text(
               'Organize your studying in one place.',
               style: AppStyles.bold20black,
             ),
-            HeightSpacing( 15),
+            HeightSpacing(15),
             Text(
               'Everything you need to organize your study schedule in one easy-to-use place.',
               style: AppStyles.medium16black,
@@ -53,7 +53,7 @@ class _OnBoardingState extends State<OnBoarding> {
             Center(
               child: CustomButton(
                 onPressed: () {
-                  GoRouter.of(context).pushNamed(AppRoutes.onBoardingTwo);
+                  context.pushNamed(AppRoutes.onBoardingTwo);
                 },
                 text: 'Next',
               ),

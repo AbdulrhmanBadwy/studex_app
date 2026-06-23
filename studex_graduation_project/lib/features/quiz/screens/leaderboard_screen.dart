@@ -21,7 +21,7 @@ class LeaderboardScreen extends StatelessWidget {
           children: [
             CustomHeadlineScreen(
               title: 'لوحة المتصدرين',
-              onPressed: GoRouter.of(context).pop,
+              onPressed: () => context.pop(),
             ),
             HeightSpacing(22),
             Row(

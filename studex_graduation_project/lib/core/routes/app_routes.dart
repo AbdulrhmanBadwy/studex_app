@@ -5,6 +5,7 @@ class AppRoutes {
   static const onBoardingThree = '/on_boarding3_screen';
   static const loginRoute = '/login_Screen';
   static const registerRoute = '/register_Screen';
+  static const rePasswordRoute = '/re_password_screen';
   static const monitoringPanel = '/monitoring_panel_screen';
   static const leaderboardScreen = '/leaderboard_Screen';
   static const settingsScreen = '/settings_Screen';
