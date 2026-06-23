@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:studex_graduation_project/core/theme/app_colors.dart';
 import 'package:studex_graduation_project/core/theme/app_styles.dart';
-import 'package:studex_graduation_project/features/widgets/custom_elevated_botton.dart';
 
 class QuizProgressHeader extends StatelessWidget {
   /// Progress value between 0.0 and 1.0

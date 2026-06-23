@@ -190,7 +190,7 @@ class _CustomDropdownButtonFormFieldState extends State<CustomDropdownButtonForm
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
       dropdownColor: AppColors.whiteColor,
-      value: _items.contains(_selectedValue) ? _selectedValue : null,
+      initialValue: _items.contains(_selectedValue) ? _selectedValue : null,
       hint: Text(
         _defaultHint(),
         style: TextStyle(color: AppColors.blackBgColor),

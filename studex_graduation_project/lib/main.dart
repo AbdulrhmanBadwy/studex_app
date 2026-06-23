@@ -1,9 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:studex_graduation_project/core/routes/app_router_generation.dart';
 import 'package:studex_graduation_project/core/routes/app_router_generation.dart' as RouterGenerationConfig;
 
 import 'core/config/app_config.dart';

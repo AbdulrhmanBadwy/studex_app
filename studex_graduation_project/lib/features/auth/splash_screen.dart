@@ -7,7 +7,7 @@ import '../../core/routes/app_routes.dart';
 import '../../core/services/auth_service.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -15,34 +15,45 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   StreamSubscription? _sub;
+  bool _navigated = false;
+
+  void _go(String route) {
+    if (_navigated || !mounted) return;
+    _navigated = true;
+    context.go(route);
+  }
 
   @override
   void initState() {
     super.initState();
 
     final current = AuthService.instance.currentUser;
+
+    // If already logged in → go home
     if (current != null) {
-      // Already signed in -> go to home
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        context.go(AppRoutes.homeScreen);
+        _go(AppRoutes.homeScreen);
       });
       return;
     }
 
-    // Listen for first auth state event and navigate accordingly.
+    // Listen for auth changes
     _sub = AuthService.instance.authStateChanges.listen((user) {
       if (user != null) {
-        context.go(AppRoutes.homeScreen);
+        _go(AppRoutes.homeScreen);
       } else {
-        context.go(AppRoutes.loginRoute);
+        _go(AppRoutes.loginRoute);
       }
     });
 
-    // Fallback: if no event within 5 seconds, go to login
+    // Fallback timeout (safety net)
     Future.delayed(const Duration(seconds: 5), () {
-      if (!mounted) return;
+      if (!mounted || _navigated) return;
+
       final cur = AuthService.instance.currentUser;
-      if (cur == null) context.go(AppRoutes.loginRoute);
+      if (cur == null) {
+        _go(AppRoutes.loginRoute);
+      }
     });
   }
 
