@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:studex_graduation_project/core/routes/app_router_generation.dart' as RouterGenerationConfig;
+import 'package:studex_graduation_project/core/routes/app_router_generation.dart'
+as RouterGenerationConfig;
 
 import 'core/config/app_config.dart';
 import 'core/config/firebase_config.dart';
 import 'core/theme/app_themes.dart';
 import 'blocs/auth/auth_bloc.dart';
 import 'blocs/user/user_bloc.dart';
+import 'blocs/quiz/quiz_bloc.dart';
 import 'repositories/auth_repository.dart';
 import 'repositories/user_repository.dart';
+import 'repositories/quiz_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,10 +29,16 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AuthBloc(authRepository: FirebaseAuthRepository()),
+          create: (context) =>
+              AuthBloc(authRepository: FirebaseAuthRepository()),
         ),
         BlocProvider(
-          create: (context) => UserBloc(userRepository: FirestoreUserRepository()),
+          create: (context) =>
+              UserBloc(userRepository: FirestoreUserRepository()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              QuizBloc(quizRepository: FirestoreQuizRepository()),
         ),
       ],
       child: ScreenUtilInit(
@@ -41,7 +50,6 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: AppConfig.showDebugBanner,
             title: AppConfig.appName,
             theme: AppThemes.lightTheme,
-
             locale: AppConfig.defaultLocale,
             supportedLocales: AppConfig.supportedLocales,
             localizationsDelegates: const [
@@ -49,7 +57,6 @@ class MyApp extends StatelessWidget {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-
             routerConfig: RouterGenerationConfig.goRouter,
           );
         },

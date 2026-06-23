@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 
 class CustomButtonNavBar extends StatelessWidget {
-  const CustomButtonNavBar({super.key});
+  final int currentIndex;
+
+  const CustomButtonNavBar({super.key, this.currentIndex = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +13,23 @@ class CustomButtonNavBar extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       selectedItemColor: const Color(0xff6A6EF6),
       unselectedItemColor: Colors.grey,
-      currentIndex: 0,
+      currentIndex: currentIndex,
+      onTap: (index) {
+        switch (index) {
+          case 0:
+            context.go(AppRoutes.homeScreen);
+            break;
+          case 1:
+            context.go(AppRoutes.roomListScreen);
+            break;
+          case 2:
+            context.go(AppRoutes.monitoringPanel);
+            break;
+          case 3:
+            context.go(AppRoutes.settingsScreen);
+            break;
+        }
+      },
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home_filled),

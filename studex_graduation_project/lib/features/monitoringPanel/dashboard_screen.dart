@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 import 'package:studex_graduation_project/features/monitoringPanel/widgets/app_bar.dart';
 import 'package:studex_graduation_project/features/monitoringPanel/widgets/exam_grade_section.dart';
 import 'package:studex_graduation_project/features/monitoringPanel/widgets/dashboard_items_section.dart';
@@ -12,9 +14,11 @@ class MonitoringPanelScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DashboardAppBar(
-        onProfileTap: () {},
-        onNotificationTap: () {},
-        onMenuTap: () {},
+        onProfileTap: () => context.pushNamed(AppRoutes.editProfileScreen),
+        onNotificationTap: () {
+          // TODO: add a notifications screen and route the bell icon there.
+        },
+        onMenuTap: () => context.go(AppRoutes.settingsScreen),
       ),
       body: SingleChildScrollView(
         child: Column(

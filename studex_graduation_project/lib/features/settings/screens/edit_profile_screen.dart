@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:studex_graduation_project/core/constants/assets_paths.dart';
@@ -60,28 +61,39 @@ class ProfileEditScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: AppColors.primaryAllColor,
                         shape: BoxShape.circle,
-                        border: Border.all(color: AppColors.whiteColor , width: 2.w),
+                        border: Border.all(
+                          color: AppColors.whiteColor,
+                          width: 2.w,
+                        ),
                       ),
                       child: IconButton(
                         padding: EdgeInsets.zero,
                         onPressed: () {
-
+                          // TODO: add avatar/image picker flow.
                         },
-                        icon: Icon(Icons.edit, color: Colors.white, size: 18.sp),
+                        icon: Icon(
+                          Icons.edit,
+                          color: Colors.white,
+                          size: 18.sp,
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
 
-              const HeightSpacing( 10),
+              const HeightSpacing(10),
 
-               Text("تغيير الصورة", style: AppStyles.primaryHeadlineStyle.copyWith(
-                 color: AppColors.primaryAllColor,
-                 fontSize: 14.sp ,
-               ) ),
+              Text(
+                "تغيير الصورة",
+                style: AppStyles.primaryHeadlineStyle.copyWith(
+                  color: AppColors.primaryAllColor,
+                  fontSize: 14.sp,
+                ),
+              ),
 
-              const HeightSpacing( 30),
+              const HeightSpacing(30),
+
               /// المعلومات الدراسية
               const Align(
                 alignment: Alignment.centerRight,
@@ -91,29 +103,32 @@ class ProfileEditScreen extends StatelessWidget {
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
-                    fontFamily: 'AbdoMaster'
+                    fontFamily: 'AbdoMaster',
                   ),
                 ),
               ),
-              const HeightSpacing( 20),
+              const HeightSpacing(20),
               Align(
                 alignment: Alignment.centerRight,
-                child: Text('الاسم بالكامل' , style: AppStyles.primaryHeadlineStyle.copyWith(
-                  color: Colors.black,
-                  fontSize: 16.sp,
-                ),),
+                child: Text(
+                  'الاسم بالكامل',
+                  style: AppStyles.primaryHeadlineStyle.copyWith(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                  ),
+                ),
               ),
               const HeightSpacing(8),
               TextField(
                 style: AppStyles.primaryHeadlineStyle.copyWith(
                   color: Colors.black,
-                  fontSize: 18.sp
+                  fontSize: 18.sp,
                 ),
                 decoration: InputDecoration(
                   hintText: "مثال: عبدالله احمد ",
                   hintStyle: AppStyles.primaryHeadlineStyle.copyWith(
-                    color: Colors.grey ,
-                    fontSize: 16.sp
+                    color: Colors.grey,
+                    fontSize: 16.sp,
                   ),
                   prefixIcon: const Icon(Icons.school),
                   filled: true,
@@ -124,25 +139,27 @@ class ProfileEditScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const HeightSpacing( 20),
+              const HeightSpacing(20),
               Align(
                 alignment: Alignment.centerRight,
-                child: Text('الكلية' , style: AppStyles.primaryHeadlineStyle.copyWith(
-                  color: Colors.black,
-                  fontSize: 16.sp,
-                ),),
+                child: Text(
+                  'الكلية',
+                  style: AppStyles.primaryHeadlineStyle.copyWith(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                  ),
+                ),
               ),
               const HeightSpacing(8),
+
               /// الكلية
               TextField(
-                style: AppStyles.bold16primary.copyWith(
-                  color: Colors.black
-                ),
+                style: AppStyles.bold16primary.copyWith(color: Colors.black),
                 decoration: InputDecoration(
                   hintText: "كلية علوم الحاسب",
                   hintStyle: AppStyles.primaryHeadlineStyle.copyWith(
-                    color: Colors.grey ,
-                    fontSize: 16.sp
+                    color: Colors.grey,
+                    fontSize: 16.sp,
                   ),
                   prefixIcon: const Icon(Icons.school),
                   filled: true,
@@ -154,7 +171,7 @@ class ProfileEditScreen extends StatelessWidget {
                 ),
               ),
 
-              const HeightSpacing( 20),
+              const HeightSpacing(20),
 
               /// السنة والتخصص
               Row(
@@ -202,7 +219,7 @@ class ProfileEditScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12.r),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () => context.pop(),
                   child: Text(
                     "حفظ التعديلات",
                     style: AppStyles.primaryHeadlineStyle.copyWith(

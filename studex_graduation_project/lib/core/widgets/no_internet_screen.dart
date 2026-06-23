@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:studex_graduation_project/core/theme/app_colors.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 import 'package:studex_graduation_project/core/widgets/spacing.dart';
 import 'package:studex_graduation_project/features/homescreen/widgets/custom_button_nav_bar.dart';
 
@@ -8,11 +10,7 @@ class NoInternetScreen extends StatelessWidget {
   final VoidCallback? onRetry;
   final VoidCallback? onContinueOffline;
 
-  const NoInternetScreen({
-    super.key,
-    this.onRetry,
-    this.onContinueOffline,
-  });
+  const NoInternetScreen({super.key, this.onRetry, this.onContinueOffline});
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +34,24 @@ class NoInternetScreen extends StatelessWidget {
           actions: [
             Padding(
               padding: EdgeInsets.only(left: 16.w),
-              child: Icon(Icons.wifi_off_rounded,
-                  color: const Color(0xff94A3B8), size: 22.sp),
+              child: Icon(
+                Icons.wifi_off_rounded,
+                color: const Color(0xff94A3B8),
+                size: 22.sp,
+              ),
             ),
           ],
           leading: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.more_vert,
-                color: const Color(0xff0F172A), size: 22.sp),
+            onPressed: () {
+              if (context.canPop()) {
+                context.pop();
+              }
+            },
+            icon: Icon(
+              Icons.more_vert,
+              color: const Color(0xff0F172A),
+              size: 22.sp,
+            ),
           ),
         ),
         body: Padding(
@@ -99,7 +107,7 @@ class NoInternetScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 54.h,
                 child: ElevatedButton.icon(
-                  onPressed: onRetry,
+                  onPressed: onRetry ?? () => context.go(AppRoutes.homeScreen),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primaryAllColor,
                     elevation: 0,
@@ -107,8 +115,11 @@ class NoInternetScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(14.r),
                     ),
                   ),
-                  icon: Icon(Icons.refresh_rounded,
-                      color: Colors.white, size: 20.sp),
+                  icon: Icon(
+                    Icons.refresh_rounded,
+                    color: Colors.white,
+                    size: 20.sp,
+                  ),
                   label: Text(
                     'إعادة المحاولة',
                     style: TextStyle(
@@ -127,7 +138,9 @@ class NoInternetScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 48.h,
                 child: TextButton(
-                  onPressed: onContinueOffline,
+                  onPressed:
+                      onContinueOffline ??
+                      () => context.go(AppRoutes.homeScreen),
                   child: Text(
                     'العمل بدون اتصال',
                     style: TextStyle(
@@ -143,7 +156,7 @@ class NoInternetScreen extends StatelessWidget {
         ),
 
         // Bottom nav bar
-        bottomNavigationBar: CustomButtonNavBar(),
+        bottomNavigationBar: const CustomButtonNavBar(),
       ),
     );
   }

@@ -30,12 +30,11 @@ class CreateQuizStepTwo extends StatelessWidget {
             children: [
               // AppBar row
               Padding(
-                padding:
-                EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                 child: Row(
                   children: [
                     IconButton(
-                      onPressed: () => GoRouter.of(context).pop(),
+                      onPressed: () => context.pop(),
                       icon: Icon(
                         Icons.arrow_back,
                         size: 24.sp,
@@ -57,7 +56,9 @@ class CreateQuizStepTwo extends StatelessWidget {
               Expanded(
                 child: SingleChildScrollView(
                   padding: EdgeInsets.symmetric(
-                      horizontal: 16.w, vertical: 16.h),
+                    horizontal: 16.w,
+                    vertical: 16.h,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -113,9 +114,11 @@ class CreateQuizStepTwo extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.info_outline,
-                              size: 14.sp,
-                              color: const Color(0xff94A3B8)),
+                          Icon(
+                            Icons.info_outline,
+                            size: 14.sp,
+                            color: const Color(0xff94A3B8),
+                          ),
                           SizedBox(width: 4.w),
                           Text(
                             'سيتم حفظ مسودة تلقائياً',
@@ -139,8 +142,7 @@ class CreateQuizStepTwo extends StatelessWidget {
 
         // Bottom buttons
         bottomNavigationBar: Padding(
-          padding:
-          EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -151,7 +153,7 @@ class CreateQuizStepTwo extends StatelessWidget {
                 child: ElevatedButton.icon(
                   onPressed: () {
                     // TODO: publish quiz
-                    GoRouter.of(context).pop();
+                    context.pop();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primaryAllColor,
@@ -160,8 +162,11 @@ class CreateQuizStepTwo extends StatelessWidget {
                     ),
                     elevation: 0,
                   ),
-                  icon: Icon(Icons.rocket_launch_outlined,
-                      color: Colors.white, size: 18.sp),
+                  icon: Icon(
+                    Icons.rocket_launch_outlined,
+                    color: Colors.white,
+                    size: 18.sp,
+                  ),
                   label: Text(
                     'حفظ ونشر الاختبار',
                     style: TextStyle(
@@ -182,7 +187,7 @@ class CreateQuizStepTwo extends StatelessWidget {
                 child: TextButton(
                   onPressed: () {
                     // TODO: save draft
-                    GoRouter.of(context).pop();
+                    context.pop();
                   },
                   child: Text(
                     'حفظ كمسودة',

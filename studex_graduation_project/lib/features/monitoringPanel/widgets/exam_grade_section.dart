@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 import 'package:studex_graduation_project/core/theme/app_styles.dart';
 
 class ExamGradesSection extends StatefulWidget {
@@ -54,7 +56,7 @@ class _ExamGradesSectionState extends State<ExamGradesSection> {
             children: [
               Text('درجات الإختبارات', style: AppStyles.bold16black),
               GestureDetector(
-                onTap: () {},
+                onTap: () => context.pushNamed(AppRoutes.leaderboardScreen),
                 child: const Icon(Icons.more_horiz, color: Colors.grey),
               ),
             ],

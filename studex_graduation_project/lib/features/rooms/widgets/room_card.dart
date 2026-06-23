@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 import 'package:studex_graduation_project/core/theme/app_colors.dart';
 import 'package:studex_graduation_project/core/widgets/spacing.dart';
 
@@ -20,96 +22,102 @@ class RoomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 16.h),
-      padding: EdgeInsets.all(16.w),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24.r),
-        border: Border.all(color: Colors.grey.shade100),
-      ),
-      child: Stack(
-        children: [
-          // الـ Tag اللي فوق عاليمين
-          Positioned(
-            left: 0,
-            top: 0,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
-              decoration: BoxDecoration(
-                color: tagColor,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                tag,
-                style:  TextStyle(
-                  color: Colors.blue,
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () => context.pushNamed(AppRoutes.roomChatScreen),
+      child: Container(
+        margin: EdgeInsets.only(bottom: 16.h),
+        padding: EdgeInsets.all(16.w),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24.r),
+          border: Border.all(color: Colors.grey.shade100),
+        ),
+        child: Stack(
+          children: [
+            // الـ Tag اللي فوق عاليمين
+            Positioned(
+              left: 0,
+              top: 0,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
+                decoration: BoxDecoration(
+                  color: tagColor,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  tag,
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Icon(Icons.access_time, size: 14.sp, color: Colors.grey),
-                  const WidthSpacing(4),
-                  Text(
-                    status,
-                    style: TextStyle(color: Colors.grey, fontSize: 11.sp),
-                  ),
-                ],
-              ),
-              const HeightSpacing(12),
-              Text(
-                title,
-                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                category,
-                style: TextStyle(color: Color(0xff6A6EF6), fontSize: 14.sp),
-              ),
-              const HeightSpacing(8),
-              Text(
-                description,
-                style: TextStyle(color: Colors.black54, fontSize: 13.sp),
-                maxLines: 2,
-              ),
-              const HeightSpacing(20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // زر الدخول المصمم
-                  Container(
-                    width: 50.w,
-                    height: 40.h,
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryAllColor,
-                      borderRadius: BorderRadius.circular(12.r),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.access_time, size: 14.sp, color: Colors.grey),
+                    const WidthSpacing(4),
+                    Text(
+                      status,
+                      style: TextStyle(color: Colors.grey, fontSize: 11.sp),
                     ),
-                    child: Center(
-                      child: Text(
-                        "دخول",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12.sp,
-                          height: 1.1.h,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'AbdoMaster'
+                  ],
+                ),
+                const HeightSpacing(12),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  category,
+                  style: TextStyle(color: Color(0xff6A6EF6), fontSize: 14.sp),
+                ),
+                const HeightSpacing(8),
+                Text(
+                  description,
+                  style: TextStyle(color: Colors.black54, fontSize: 13.sp),
+                  maxLines: 2,
+                ),
+                const HeightSpacing(20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // زر الدخول المصمم
+                    Container(
+                      width: 50.w,
+                      height: 40.h,
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryAllColor,
+                        borderRadius: BorderRadius.circular(12.r),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "دخول",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12.sp,
+                            height: 1.1.h,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'AbdoMaster',
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Row(children: [_buildMemberStack(memberCount)]),
-                ],
-              ),
-            ],
-          ),
-        ],
+                    Row(children: [_buildMemberStack(memberCount)]),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

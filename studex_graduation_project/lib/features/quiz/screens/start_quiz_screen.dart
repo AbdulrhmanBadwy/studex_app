@@ -1,42 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 import 'package:studex_graduation_project/features/quiz/widgets/start_quiz_widget/abb_bar_start_quiz.dart';
 import 'package:studex_graduation_project/features/quiz/widgets/start_quiz_widget/start_quiz_button.dart';
 import 'package:studex_graduation_project/features/quiz/widgets/start_quiz_widget/start_quiz_details.dart';
-import 'package:studex_graduation_project/features/quiz/widgets/start_quiz_widget/start_quiz_header_image.dart';
 import 'package:studex_graduation_project/features/quiz/widgets/start_quiz_widget/start_quiz_title.dart';
+import 'package:studex_graduation_project/core/theme/app_colors.dart';
 
 class StartQuizScreen extends StatelessWidget {
-  const StartQuizScreen({super.key});
+  final String quizId;
+
+  const StartQuizScreen({super.key, required this.quizId});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF8F9FF),
+      backgroundColor: const Color(0xFFF8F9FF),
       appBar: StartQuizAppBar(
-        title: 'هندسة',
-        subtitle: 'الترم الاول',
+        title: 'اختبار',
+        subtitle: 'ابدأ الإجابة',
         onMenuPressed: () {},
-        onArrowPressed: () {},
+        onArrowPressed: () => context.pop(),
       ),
-      body:
-    Column(
-      children: [
-        StartQuizHeaderImage(
-              imageUrl:
-                  'https://media.istockphoto.com/id/1616906708/vector/vector-speech-bubble-with-quiz-time-words-trendy-text-balloon-with-geometric-grapic-shape.jpg?s=2048x2048&w=is&k=20&c=5Yp0ha5yM9YQGZx01kR3bGh-M9H4N2XEJLGDOXe7R1o=',
+      body: Column(
+        children: [
+          SizedBox(height: 32.h),
+          Center(
+            child: Container(
+              width: 180.w,
+              height: 180.w,
+              decoration: BoxDecoration(
+                color: const Color(0xFF1A1F2E),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(Icons.quiz_outlined,
+                  color: AppColors.primaryLight, size: 80.sp),
             ),
-        StartQuizTitleSection(
-          title: 'اختبار الوحدة الأولى - أساسيات',
-          subtitle: 'يتضمن هذا الاختبار مفاهيم هندسة البرمجيات الأساسية، دورة حياة النظام، والنماذج المختلفة للتطوير. استعد جيداً!',
-        ),
-        SizedBox(height: 16.h),
-        StartQuizDetailsSection(participantsCount: '12', timeValue: '20', questionsCount: '15',),
-        SizedBox(height: 40.h),
-        StartQuizButton(label: 'بدء الجلسة الآن', onPressed: () {  },),
-      ],
-    ),
-
+          ),
+          SizedBox(height: 32.h),
+          StartQuizTitleSection(
+            title: 'جاهز تبدأ الاختبار؟',
+            subtitle: 'اقرأ كل سؤال بتأن واختر الإجابة الصحيحة.',
+          ),
+          SizedBox(height: 16.h),
+          StartQuizDetailsSection(
+            participantsCount: '-',
+            timeValue: '-',
+            questionsCount: '-',
+          ),
+          SizedBox(height: 40.h),
+          StartQuizButton(
+            label: 'ابدأ الاختبار الآن',
+            onPressed: () => context.pushNamed(
+              AppRoutes.takeQuiz,
+              extra: {'quizId': quizId},
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

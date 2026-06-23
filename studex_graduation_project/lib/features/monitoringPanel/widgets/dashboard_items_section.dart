@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 import 'package:studex_graduation_project/features/widgets/dashboard_item.dart';
 
 class DashboardSection extends StatelessWidget {
@@ -43,6 +45,17 @@ class DashboardSection extends StatelessWidget {
             subtitle: _items[i].subTitle,
             iconColor: _items[i].iconColor,
             backgroundColor: _items[i].bgColor,
+            onTap: () {
+              switch (_items[i].title) {
+                case 'الغرف المنضمة':
+                  context.go(AppRoutes.roomListScreen);
+                  break;
+                case 'الاختبارات المكتملة':
+                case 'متوسط الدرجات':
+                  context.pushNamed(AppRoutes.leaderboardScreen);
+                  break;
+              }
+            },
           ),
         ),
       ],

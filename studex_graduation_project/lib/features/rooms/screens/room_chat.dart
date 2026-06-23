@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/chat_bubble.dart';
 import '../widgets/chat_header_info.dart';
@@ -21,7 +22,7 @@ class RoomChatScreen extends StatelessWidget {
             const ChatHeaderInfo(),
             Expanded(
               child: ListView(
-                padding:  EdgeInsets.all(20.w),
+                padding: EdgeInsets.all(20.w),
                 children: const [
                   DateChip(label: "اليوم"),
                   ChatBubble(
@@ -63,7 +64,7 @@ class RoomChatScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       centerTitle: true,
       leading: _iconBox(Icons.copy_rounded),
-      title:  Text(
+      title: Text(
         "هندسة برمجيات 1",
         style: TextStyle(
           color: Colors.black,
@@ -73,17 +74,17 @@ class RoomChatScreen extends StatelessWidget {
       ),
       actions: [
         Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 8.w),
+          padding: EdgeInsets.symmetric(horizontal: 8.w),
           child: IconButton(
             icon: CircleAvatar(
               backgroundColor: const Color(0xffEEF0FF),
-              child:  Icon(
+              child: Icon(
                 Icons.arrow_forward_ios,
                 size: 16.sp,
                 color: Color(0xff6A6EF6),
               ),
             ),
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
           ),
         ),
       ],
@@ -92,14 +93,12 @@ class RoomChatScreen extends StatelessWidget {
 
   Widget _iconBox(IconData icon) {
     return Container(
-      margin:  EdgeInsets.all(10.w),
+      margin: EdgeInsets.all(10.w),
       decoration: BoxDecoration(
         color: const Color(0xffEEF0FF),
         borderRadius: BorderRadius.circular(10.r),
       ),
-      child: Icon(icon, color:  Color(0xff6A6EF6), size: 20.sp),
+      child: Icon(icon, color: Color(0xff6A6EF6), size: 20.sp),
     );
   }
 }
-
-

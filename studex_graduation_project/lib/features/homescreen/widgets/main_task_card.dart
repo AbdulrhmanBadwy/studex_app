@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MainTaskCard extends StatelessWidget {
-  const MainTaskCard({super.key});
+  final VoidCallback? onPressed;
+
+  const MainTaskCard({super.key, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class MainTaskCard extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: onPressed,
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
               foregroundColor: const Color(0xff6A6EF6),

@@ -28,7 +28,7 @@ class _OnBoardingTwoState extends State<OnBoardingTwo> {
           children: [
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppRoutes.loginRoute);
+                context.go(AppRoutes.loginRoute);
               },
               child: Text(
                 'Skip',
@@ -54,7 +54,7 @@ class _OnBoardingTwoState extends State<OnBoardingTwo> {
             Center(
               child: CustomButton(
                 onPressed: () {
-                  GoRouter.of(context).pushNamed(AppRoutes.onBoardingThree);
+                  context.pushNamed(AppRoutes.onBoardingThree);
                 },
                 text: 'Next',
               ),

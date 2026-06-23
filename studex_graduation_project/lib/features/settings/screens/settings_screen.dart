@@ -38,7 +38,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 CustomHeadlineSettings(
                   title: 'الإعدادات',
                   onPressed: () {
-                    GoRouter.of(context).pop;
+                    if (context.canPop()) {
+                      context.pop();
+                    }
                   },
                 ),
                 HeightSpacing(5),
@@ -56,15 +58,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   title: 'تعديل الملف الشخصي ',
                   icon: AssetsPaths.personSettings,
                   trailingIcon: Icons.arrow_forward_ios_outlined,
-                  onTap: (){
-
-                  },
+                  onTap: () => context.pushNamed(AppRoutes.editProfileScreen),
                 ),
                 HeightSpacing(10),
                 CustomItemInSettings(
-                  onTap: (){
-
-                  },
+                  onTap: () => context.pushNamed(AppRoutes.rePasswordRoute),
                   title: 'تغيير كلمة المرور ',
                   icon: AssetsPaths.changePasswordSettings,
                   trailingIcon: Icons.arrow_forward_ios_outlined,
@@ -124,7 +122,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   title: 'لغة التطبيق',
                   icon: AssetsPaths.appLanguage,
                   currentLanguage: 'العربية',
-                  onTap: () {},
+                  onTap: () {
+                    // TODO: add language selection screen.
+                  },
                 ),
                 HeightSpacing(32),
                 Text(
@@ -136,8 +136,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 HeightSpacing(8.5),
                 CustomItemInSettings(
-                  onTap: (){
-
+                  onTap: () {
+                    // TODO: add help center screen.
                   },
                   title: 'مركز المساعده',
                   icon: AssetsPaths.centerHelping,
@@ -145,8 +145,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 HeightSpacing(10),
                 CustomItemInSettings(
-                  onTap: (){
-
+                  onTap: () {
+                    // TODO: add privacy policy screen.
                   },
                   title: 'سياسة الخصوصية',
                   icon: AssetsPaths.privacyPolitical,
@@ -155,7 +155,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 HeightSpacing(48),
                 CustomExitButton(
                   onPressed: () {
-                    GoRouter.of(context).pushReplacement(AppRoutes.loginRoute);
+                    context.go(AppRoutes.loginRoute);
                   },
                 ),
                 HeightSpacing(30),

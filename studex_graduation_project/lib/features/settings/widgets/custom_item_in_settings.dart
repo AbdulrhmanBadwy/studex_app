@@ -30,7 +30,7 @@ class CustomItemInSettings extends StatelessWidget {
         onTap: onTap,
         title: Text(title, style: AppStyles.textItemInSettings),
         leading: SvgPicture.asset(icon, width: 40.w, height: 40.h),
-        trailing: IconButton(onPressed: () {}, icon: Icon(trailingIcon)),
+        trailing: IconButton(onPressed: onTap, icon: Icon(trailingIcon)),
       ),
     );
   }

@@ -5,6 +5,7 @@ class AppRoutes {
   static const onBoardingThree = '/on_boarding3_screen';
   static const loginRoute = '/login_Screen';
   static const registerRoute = '/register_Screen';
+  static const rePasswordRoute = '/re_password_screen';
   static const monitoringPanel = '/monitoring_panel_screen';
   static const leaderboardScreen = '/leaderboard_Screen';
   static const settingsScreen = '/settings_Screen';
@@ -12,6 +13,7 @@ class AppRoutes {
   static const createQuizz = '/create_quizz';
   static const startQuiz = '/start_quiz';
   static const takeQuiz = '/take_quiz';
+  static const quizList = '/quiz_list';
   static const monitoringDashboardScreen = '/monitoring_dashboard_screen';
   static const editProfileScreen = '/edit_profile_Screen';
   static const homeScreen = '/home_screen';
