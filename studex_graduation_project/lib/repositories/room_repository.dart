@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:studex_graduation_project/core/constants/firestore_collections.dart';
+
 import '../models/room_model.dart';
 
 abstract class RoomRepository {
   Stream<List<RoomModel>> getRooms();
-  Future<void> createRoom(RoomModel room);
+  Future<RoomModel> createRoom(RoomModel room);
   Future<void> joinRoom(String roomId, String userId);
   Future<void> leaveRoom(String roomId, String userId);
 }
@@ -15,24 +17,64 @@ class FirestoreRoomRepository implements RoomRepository {
       : _firestore = firestore ?? FirebaseFirestore.instance;
 
   CollectionReference<Map<String, dynamic>> get _roomsCollection =>
-      _firestore.collection('rooms');
+      _firestore.collection(FirestoreCollections.rooms);
 
   @override
   Stream<List<RoomModel>> getRooms() {
     return _roomsCollection.snapshots().map((snapshot) {
-      return snapshot.docs.map((doc) => RoomModel.fromJson(doc.data())).toList();
+      return snapshot.docs.map((doc) {
+        final data = doc.data();
+        return RoomModel.fromJson({...data, 'id': data['id'] ?? doc.id});
+      }).toList();
     });
   }
 
   @override
-  Future<void> createRoom(RoomModel room) async {
-    await _roomsCollection.doc(room.id).set(room.toJson());
+  Future<RoomModel> createRoom(RoomModel room) async {
+    final trimmedName = room.name.trim();
+    if (trimmedName.isEmpty) {
+      throw ArgumentError('Room name cannot be empty.');
+    }
+
+    final roomRef = room.id.isEmpty ? _roomsCollection.doc() : _roomsCollection.doc(room.id);
+    final members = {...room.members, room.creatorId}.toList();
+    final createdRoom = room.copyWith(
+      id: roomRef.id,
+      name: trimmedName,
+      members: members,
+    );
+
+    await roomRef.set(createdRoom.toJson());
+    return createdRoom;
   }
 
   @override
   Future<void> joinRoom(String roomId, String userId) async {
-    await _roomsCollection.doc(roomId).update({
-      'members': FieldValue.arrayUnion([userId]),
+    if (userId.trim().isEmpty) {
+      throw ArgumentError('User id cannot be empty.');
+    }
+
+    final roomRef = _roomsCollection.doc(roomId);
+
+    await _firestore.runTransaction((transaction) async {
+      final snapshot = await transaction.get(roomRef);
+      if (!snapshot.exists) {
+        throw StateError('Room does not exist.');
+      }
+
+      final members =
+          (snapshot.data()?['members'] as List<dynamic>?)
+                  ?.map((e) => e.toString())
+                  .toList() ??
+              [];
+
+      if (members.contains(userId)) {
+        throw StateError('Already joined.');
+      }
+
+      transaction.update(roomRef, {
+        'members': FieldValue.arrayUnion([userId]),
+      });
     });
   }
 

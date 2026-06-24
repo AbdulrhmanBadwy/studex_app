@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "471075899441",
+    "project_id": "studex-app-project",
+    "storage_bucket": "studex-app-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471075899441:android:0f41f83f145a44e9416d10",
+        "android_client_info": {
+          "package_name": "com.example.studex_graduation_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471075899441-hn619qgqre5j7k7ilj1kftemrrfjgtjb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.studex_graduation_project",
+            "certificate_hash": "700675a1d4c733c8e7c6a60a92c932bc0ffc4026"
+          }
+        },
+        {
+          "client_id": "471075899441-n27gjvi2hk2hehektsvumkv67adhfppp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrTkvWcrPja-dZQnG0HroQyP3kdX9p250"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471075899441-n27gjvi2hk2hehektsvumkv67adhfppp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "471075899441-0nf9s44secosvtknam85m8jdch5tgbt0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.studexGraduationProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,9 +1,12 @@
+import 'package:flutter/foundation.dart';
+
 class RoomModel {
   final String id;
   final String name;
   final String description;
   final String type; // public, private
   final String creatorId;
+  final List<String> members;
 
   const RoomModel({
     required this.id,
@@ -11,6 +14,7 @@ class RoomModel {
     required this.description,
     required this.type,
     required this.creatorId,
+    this.members = const [],
   });
 
   RoomModel copyWith({
@@ -19,6 +23,7 @@ class RoomModel {
     String? description,
     String? type,
     String? creatorId,
+    List<String>? members,
   }) {
     return RoomModel(
       id: id ?? this.id,
@@ -26,6 +31,7 @@ class RoomModel {
       description: description ?? this.description,
       type: type ?? this.type,
       creatorId: creatorId ?? this.creatorId,
+      members: members ?? this.members,
     );
   }
 
@@ -36,6 +42,7 @@ class RoomModel {
       'description': description,
       'type': type,
       'creatorId': creatorId,
+      'members': members,
     };
   }
 
@@ -46,6 +53,11 @@ class RoomModel {
       description: json['description'] as String? ?? '',
       type: json['type'] as String? ?? 'public',
       creatorId: json['creatorId'] as String? ?? '',
+      members:
+          (json['members'] as List<dynamic>?)
+              ?.map((e) => e.toString())
+              .toList() ??
+          [],
     );
   }
 
@@ -58,9 +70,17 @@ class RoomModel {
           name == other.name &&
           description == other.description &&
           type == other.type &&
-          creatorId == other.creatorId;
+          creatorId == other.creatorId &&
+          listEquals(members, other.members);
 
   @override
   int get hashCode =>
-      id.hashCode ^ name.hashCode ^ description.hashCode ^ type.hashCode ^ creatorId.hashCode;
+      Object.hash(
+        id,
+        name,
+        description,
+        type,
+        creatorId,
+        Object.hashAll(members),
+      );
 }
