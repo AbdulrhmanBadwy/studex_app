@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:studex_graduation_project/core/widgets/no_internet_screen.dart';
 import 'package:studex_graduation_project/features/auth/login/login_screen.dart';
 import 'package:studex_graduation_project/features/auth/register/register_screen.dart';
+import 'package:studex_graduation_project/features/chat/presentation/screens/chat_screen.dart' show RoomChatScreen;
 import 'package:studex_graduation_project/features/homescreen/home_screen.dart';
 import 'package:studex_graduation_project/features/monitoringPanel/dashboard_screen.dart';
 import 'package:studex_graduation_project/features/onboarding/on_boarding.dart';
@@ -16,14 +17,16 @@ import 'package:studex_graduation_project/features/quiz/screens/quiz_result_scre
 import 'package:studex_graduation_project/features/quiz/screens/start_quiz_screen.dart';
 import 'package:studex_graduation_project/features/quiz/screens/take_quiz_screen.dart';
 import 'package:studex_graduation_project/features/rooms/screens/create_room.dart';
-import 'package:studex_graduation_project/features/rooms/screens/room_chat.dart';
+
 import 'package:studex_graduation_project/features/rooms/screens/rooms_list.dart';
 import 'package:studex_graduation_project/features/settings/screens/edit_profile_screen.dart';
 import 'package:studex_graduation_project/features/settings/screens/settings_screen.dart';
 import 'package:studex_graduation_project/core/routes/app_routes.dart';
 
+
 final GoRouter goRouter = GoRouter(
-  initialLocation: AppRoutes.splash,
+  initialLocation: AppRoutes.roomListScreen,
+
   routes: [
     GoRoute(
       path: AppRoutes.onBoarding,
@@ -112,7 +115,7 @@ final GoRouter goRouter = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.roomChatScreen,
-      builder: (context, state) => const RoomChatScreen(),
+      builder: (context, state) => const RoomChatScreen(roomId: 'room1'),
       name: AppRoutes.roomChatScreen,
     ),
     GoRoute(

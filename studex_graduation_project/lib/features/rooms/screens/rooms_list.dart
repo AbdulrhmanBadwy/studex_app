@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:studex_graduation_project/features/chat/presentation/screens/chat_screen.dart';
 
+import '../../../core/routes/app_routes.dart';
 import '../widgets/custom_floating_action_button.dart';
 import '../widgets/custom_search_bar.dart';
 import '../widgets/room_card.dart';
@@ -21,30 +24,37 @@ class RoomsListScreen extends StatelessWidget {
               child: CustomSearchBar(),
             ),
             Expanded(
-              child: ListView(
+              child: ListView.builder(
                 padding: const EdgeInsets.all(16),
-                children: const [
-                  RoomCard(
-                    title: "هندسة برمجيات 1",
-                    category: "برمجيات",
-                    description:
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: GestureDetector(
+                      onTap: () {
+
+
+                        context.go(AppRoutes.roomChatScreen);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const RoomChatScreen(roomId: 'room1'),//pass the actual room id here
+                          ),
+                        );
+                      },
+                      child: const RoomCard(
+                        title: "هندسة برمجيات 1",
+                        category: "برمجيات",
+                        description:
                         "مناقشة المحاضرة الثالثة والتحضير للمشروع الفصلي",
-                    memberCount: "+15",
-                    tag: "خاص",
-                    tagColor: Color(0xffEEF0FF),
-                    status: "نشط منذ 5 دقائق",
-                  ),
-                  RoomCard(
-                    title: "أساسيات التصميم",
-                    category: "تصميم واجهات",
-                    description:
-                        "ورشة عمل لمراجعة مبادئ تجربة المستخدم والخطوط",
-                    memberCount: "+42",
-                    tag: "عام",
-                    tagColor: Color(0xffE8F5E9),
-                    status: "نشط الآن",
-                  ),
-                ],
+                        memberCount: "+15",
+                        tag: "خاص",
+                        tagColor: Color(0xffEEF0FF),
+                        status: "نشط منذ 5 دقائق",
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ],
@@ -78,4 +88,3 @@ class RoomsListScreen extends StatelessWidget {
     );
   }
 }
-

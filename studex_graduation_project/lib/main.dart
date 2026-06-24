@@ -3,21 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:studex_graduation_project/core/routes/app_router_generation.dart';
-import 'package:studex_graduation_project/core/routes/app_router_generation.dart' as RouterGenerationConfig;
 
 import 'core/config/app_config.dart';
 import 'core/config/firebase_config.dart';
+import 'core/routes/app_router_generation.dart';
+import 'core/routes/app_router_generation.dart' as RouterGenerationConfig;
 import 'core/theme/app_themes.dart';
+
 import 'blocs/auth/auth_bloc.dart';
 import 'blocs/user/user_bloc.dart';
+
 import 'repositories/auth_repository.dart';
 import 'repositories/user_repository.dart';
+import 'repositories/chat_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FirebaseConfig.initialize();
   runApp(const MyApp());
+
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: true,
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -28,10 +35,12 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AuthBloc(authRepository: FirebaseAuthRepository()),
+          create: (context) =>
+              AuthBloc(authRepository: FirebaseAuthRepository()),
         ),
         BlocProvider(
-          create: (context) => UserBloc(userRepository: FirestoreUserRepository()),
+          create: (context) =>
+              UserBloc(userRepository: FirestoreUserRepository()),
         ),
       ],
       child: ScreenUtilInit(
@@ -43,7 +52,6 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: AppConfig.showDebugBanner,
             title: AppConfig.appName,
             theme: AppThemes.lightTheme,
-
             locale: AppConfig.defaultLocale,
             supportedLocales: AppConfig.supportedLocales,
             localizationsDelegates: const [
@@ -51,7 +59,6 @@ class MyApp extends StatelessWidget {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-
             routerConfig: RouterGenerationConfig.goRouter,
           );
         },
