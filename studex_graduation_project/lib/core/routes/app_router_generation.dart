@@ -18,13 +18,15 @@ import 'package:studex_graduation_project/features/quiz/screens/quiz_result_scre
 import 'package:studex_graduation_project/features/quiz/screens/start_quiz_screen.dart';
 import 'package:studex_graduation_project/features/quiz/screens/take_quiz_screen.dart';
 import 'package:studex_graduation_project/features/rooms/screens/create_room.dart';
-import 'package:studex_graduation_project/features/rooms/screens/room_chat.dart';
+
 import 'package:studex_graduation_project/features/rooms/screens/rooms_list.dart';
 import 'package:studex_graduation_project/features/settings/screens/edit_profile_screen.dart';
 import 'package:studex_graduation_project/features/settings/screens/settings_screen.dart';
 import 'package:studex_graduation_project/core/routes/app_routes.dart';
 
 import 'package:studex_graduation_project/features/homescreen/widgets/custom_button_nav_bar.dart';
+
+import '../../features/chat/presentation/screens/chat_screen.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> _homeNavigatorKey = GlobalKey<NavigatorState>();
