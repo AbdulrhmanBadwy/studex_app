@@ -191,6 +191,13 @@ class _CustomDropdownButtonFormFieldState extends State<CustomDropdownButtonForm
     return DropdownButtonFormField<String>(
       dropdownColor: AppColors.whiteColor,
       initialValue: _items.contains(_selectedValue) ? _selectedValue : null,
+      validator: (value) {
+        debugPrint('Validating value: $value');
+        if (value == null || value.isEmpty) {
+          return 'الرجاء اختيار }';
+        }
+        return null;
+      },
       hint: Text(
         _defaultHint(),
         style: TextStyle(color: AppColors.blackBgColor),

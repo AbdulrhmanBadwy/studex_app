@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "471075899441-hbi5q5atr5g7qc01g5tbvpsuih8iom4l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.studex_graduation_project",
+            "certificate_hash": "d2c93e57449721ad1339036781fbd0ecbc02ccf9"
+          }
+        },
+        {
           "client_id": "471075899441-hn619qgqre5j7k7ilj1kftemrrfjgtjb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

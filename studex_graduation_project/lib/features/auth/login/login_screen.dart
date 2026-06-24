@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:studex_graduation_project/core/constants/assets_paths.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -148,9 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: height * 0.02),
                       CustomButton(
-                        onPressed: () {
-                          // TODO: wire Google sign-in to the existing auth flow.
-                        },
+                        onPressed: loginWithGoogle,
 
                         backgroundColor: AppColors.transparent,
                         borderColor: AppColors.primaryLight,
@@ -204,4 +203,25 @@ class _LoginScreenState extends State<LoginScreen> {
       ).showSnackBar(SnackBar(content: Text(e.toString())));
     }
   }
+
+  Future<void> loginWithGoogle() async {
+    try {
+      final authRepository = FirebaseAuthRepository();
+
+      await authRepository.signInWithGoogle();
+      await GoogleSignIn().signOut();
+
+      if (!mounted) return;
+
+      context.go(AppRoutes.homeScreen);
+    } catch (e) {
+      debugPrint('GOOGLE LOGIN ERROR: $e');
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+  }
+
 }
+
