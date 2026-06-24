@@ -106,7 +106,12 @@ final GoRouter goRouter = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.roomChatScreen,
-      builder: (context, state) => const RoomChatScreen(),
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>? ?? {};
+        final roomId = extra['roomId']?.toString() ?? '';
+        final roomName = extra['roomName']?.toString() ?? '';
+        return RoomChatScreen(roomId: roomId, roomName: roomName);
+      },
       name: AppRoutes.roomChatScreen,
     ),
     GoRoute(

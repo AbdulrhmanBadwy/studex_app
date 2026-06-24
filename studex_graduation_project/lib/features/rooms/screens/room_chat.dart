@@ -8,7 +8,14 @@ import '../widgets/chat_input_field.dart';
 import '../widgets/date_chip.dart';
 
 class RoomChatScreen extends StatelessWidget {
-  const RoomChatScreen({super.key});
+  final String roomId;
+  final String roomName;
+
+  const RoomChatScreen({
+    super.key,
+    required this.roomId,
+    required this.roomName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +72,7 @@ class RoomChatScreen extends StatelessWidget {
       centerTitle: true,
       leading: _iconBox(Icons.copy_rounded),
       title: Text(
-        "هندسة برمجيات 1",
+        roomName,
         style: TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.bold,
