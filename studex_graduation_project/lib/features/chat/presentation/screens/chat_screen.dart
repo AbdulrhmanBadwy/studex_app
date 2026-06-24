@@ -12,7 +12,11 @@ import 'package:studex_graduation_project/repositories/chat_repository.dart';
 class RoomChatScreen extends StatefulWidget {
   final String roomId;
   final String roomName;
-  const RoomChatScreen({super.key, required this.roomId, required this.roomName});
+  const RoomChatScreen({
+    super.key,
+    required this.roomId,
+    required this.roomName,
+  });
 
   @override
   State<RoomChatScreen> createState() => _RoomChatScreenState();
@@ -43,7 +47,7 @@ class _RoomChatScreenState extends State<RoomChatScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) =>
-      ChatCubit(FirestoreChatRepository(), widget.roomId)..getMessages(),
+          ChatCubit(FirestoreChatRepository(), widget.roomId)..getMessages(),
       child: Scaffold(
         backgroundColor: const Color(0xffF8F9FD),
         appBar: _buildAppBar(context),
@@ -72,8 +76,9 @@ class _RoomChatScreenState extends State<RoomChatScreen> {
                     _scrollToBottom();
                   }
 
-                  final List<MessageModel> messages =
-                  state is ChatLoaded ? state.messages : [];
+                  final List<MessageModel> messages = state is ChatLoaded
+                      ? state.messages
+                      : [];
                   final chatCubit = context.read<ChatCubit>();
 
                   return ListView.builder(
@@ -84,8 +89,9 @@ class _RoomChatScreenState extends State<RoomChatScreen> {
                       return ChatBubble(
                         message: messages[index].message,
                         userName: messages[index].senderName,
-                        time: DateFormat('hh:mm a')
-                            .format(messages[index].createdAt),
+                        time: DateFormat(
+                          'hh:mm a',
+                        ).format(messages[index].createdAt),
                         isMe: messages[index].senderId == chatCubit.userId,
                         userImage: '',
                       );
@@ -108,7 +114,7 @@ class _RoomChatScreenState extends State<RoomChatScreen> {
       centerTitle: true,
       leading: _iconBox(Icons.copy_rounded),
       title: Text(
-        "هندسة برمجيات 1",
+        widget.roomName,
         style: TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.bold,
