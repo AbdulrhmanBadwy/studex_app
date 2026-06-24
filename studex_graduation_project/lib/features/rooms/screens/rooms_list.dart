@@ -21,19 +21,16 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
 
   void _openChat(RoomModel room) {
     if (room.id.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Missing room id.')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Missing room id.')));
       return;
     }
 
     try {
       context.pushNamed(
         AppRoutes.roomChatScreen,
-        extra: {
-          'roomId': room.id,
-          'roomName': room.name,
-        },
+        extra: {'roomId': room.id, 'roomName': room.name},
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -45,9 +42,9 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
   Future<void> _joinRoom(RoomModel room) async {
     final currentUser = AuthService.instance.currentUser;
     if (room.id.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Missing room id.')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Missing room id.')));
       return;
     }
     if (currentUser == null) {
@@ -60,26 +57,26 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
     try {
       await _roomRepository.joinRoom(room.id, currentUser.uid);
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Joined successfully')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Joined successfully')));
       _openChat(room);
     } on StateError catch (e) {
       if (!mounted) return;
       if (e.message == 'Room does not exist.') {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Room no longer exists')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Room no longer exists')));
         return;
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.message)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.message)));
     } on ArgumentError catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.message)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.message)));
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -124,7 +121,8 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
               itemBuilder: (context, index) {
                 final room = rooms[index];
                 final isJoined =
-                    currentUser != null && room.members.contains(currentUser.uid);
+                    currentUser != null &&
+                    room.members.contains(currentUser.uid);
                 return RoomCard(
                   title: room.name,
                   description: room.description,

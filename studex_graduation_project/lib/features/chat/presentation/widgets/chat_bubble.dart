@@ -20,14 +20,15 @@ class ChatBubble extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: 20.h),
       child: Row(
-        mainAxisAlignment: isMe ? MainAxisAlignment.start : MainAxisAlignment.end,
+        mainAxisAlignment:
+        isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (isMe) _userAvatar(),
           const WidthSpacing(8),
           Expanded(
             child: Column(
-              crossAxisAlignment: isMe ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+              crossAxisAlignment:
+              isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
               children: [
                 Text(
                   userName,
@@ -43,8 +44,8 @@ class ChatBubble extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: isMe ? const Color(0xff6A6EF6) : Colors.white,
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(isMe ? 20.r : 0),
-                      topRight: Radius.circular(isMe ? 0 : 20.r),
+                      topLeft: Radius.circular(isMe ? 0 : 20.r),
+                      topRight: Radius.circular(isMe ? 20.r : 0),
                       bottomLeft: Radius.circular(20.r),
                       bottomRight: Radius.circular(20.r),
                     ),
@@ -72,16 +73,8 @@ class ChatBubble extends StatelessWidget {
             ),
           ),
           const WidthSpacing(8),
-          if (!isMe) _userAvatar(),
         ],
       ),
-    );
-  }
-
-  Widget _userAvatar() {
-    return CircleAvatar(
-      radius: 18.r,
-      backgroundImage: NetworkImage(userImage),
     );
   }
 }
