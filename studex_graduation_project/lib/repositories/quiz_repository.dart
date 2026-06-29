@@ -2,8 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/quiz_model.dart';
 
 abstract class QuizRepository {
+
   Stream<List<QuizModel>> getQuizzes();
-  Future<void> createQuiz(QuizModel quiz);
+  Future<void> createQuiz(QuizModel quiz, String roomId);
   Future<QuizModel?> getQuizById(String quizId);
 }
 
@@ -23,10 +24,7 @@ class FirestoreQuizRepository implements QuizRepository {
     });
   }
 
-  @override
-  Future<void> createQuiz(QuizModel quiz) async {
-    await _quizzesCollection.doc(quiz.id).set(quiz.toJson());
-  }
+
 
   @override
   Future<QuizModel?> getQuizById(String quizId) async {
@@ -35,5 +33,15 @@ class FirestoreQuizRepository implements QuizRepository {
       return QuizModel.fromJson(doc.data()!);
     }
     return null;
+  }
+
+  @override
+  Future<void> createQuiz(QuizModel quiz, String roomId) async {
+    await _firestore
+        .collection('rooms')
+        .doc(roomId)
+        .collection('quizzes')
+        .doc(quiz.id)
+        .set(quiz.toJson());
   }
 }

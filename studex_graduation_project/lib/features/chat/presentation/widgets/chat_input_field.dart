@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 import 'package:studex_graduation_project/core/widgets/spacing.dart';
 
 import 'package:studex_graduation_project/features/chat/presentation/cubits/chat_cubit.dart'
     show ChatCubit;
 
 class ChatInputField extends StatefulWidget {
-  const ChatInputField({super.key});
+  String roomId;
+  ChatInputField({super.key, required this.roomId});
 
   @override
   State<ChatInputField> createState() => _ChatInputFieldState();
@@ -90,7 +93,12 @@ class _ChatInputFieldState extends State<ChatInputField> {
                 suffixIcon: IconButton(
                   icon: const Icon(Icons.add_circle_outline),
                   color: Colors.grey,
-                  onPressed: () {},
+                  onPressed: () {
+                    context.pushNamed(
+                      AppRoutes.createQuizz,
+                      extra: {'roomId': widget.roomId},
+                    );
+                  },
                 ),
               ),
             ),

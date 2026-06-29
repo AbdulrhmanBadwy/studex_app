@@ -22,4 +22,5 @@ class AppRoutes {
   static const createQuizStepOne = '/create_quiz_step_one';
   static const createQuizStepTwo = '/create_quiz_step_two';
   static const noInternet = '/no_internet';
+  static const quizListScreen = '/quiz_list_screen';
 }
