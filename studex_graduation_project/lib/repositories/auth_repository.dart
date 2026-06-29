@@ -1,4 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
+﻿import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import '../models/user_model.dart';
 import '../core/constants/user_roles.dart';
 import 'user_repository.dart';
@@ -7,6 +8,7 @@ abstract class AuthRepository {
   Stream<UserModel?> get authStateChanges;
   Future<UserModel?> signIn({required String email, required String password});
   Future<UserModel?> signUp({required String email, required String password, required String name});
+  Future<UserModel?> signInWithGoogle();
   Future<void> signOut();
   Future<void> resetPassword({required String email});
 }
@@ -80,5 +82,35 @@ class FirebaseAuthRepository implements AuthRepository {
   @override
   Future<void> resetPassword({required String email}) async {
     await _firebaseAuth.sendPasswordResetEmail(email: email);
+  }
+
+  @override
+  Future<UserModel?> signInWithGoogle() async {
+    try {
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+      if (googleUser == null) return null;
+
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final userCredential = await _firebaseAuth.signInWithCredential(credential);
+      final user = userCredential.user;
+
+      if (user != null) {
+        final userModel = _mapFirebaseUser(user);
+        if (userModel != null && userCredential.additionalUserInfo?.isNewUser == true) {
+          await _userRepository.createUserProfile(userModel);
+        }
+        return userModel;
+      }
+      return null;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

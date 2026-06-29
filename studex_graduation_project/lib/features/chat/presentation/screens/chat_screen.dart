@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 import 'package:studex_graduation_project/features/chat/presentation/cubits/chat_cubit.dart';
 import 'package:studex_graduation_project/features/chat/presentation/widgets/chat_bubble.dart';
 import 'package:studex_graduation_project/features/chat/presentation/widgets/chat_input_field.dart';
-import 'package:studex_graduation_project/features/rooms/widgets/chat_header_info.dart';
+
+import 'package:studex_graduation_project/features/rooms/widgets/custom_chat_tabs.dart';
 import 'package:studex_graduation_project/models/message_model.dart';
 import 'package:studex_graduation_project/repositories/chat_repository.dart';
 
@@ -53,7 +56,14 @@ class _RoomChatScreenState extends State<RoomChatScreen> {
         appBar: _buildAppBar(context),
         body: Column(
           children: [
-            const ChatHeaderInfo(),
+            CustomChatTabs(
+              onChatTap: () => context.pushNamed('/room-chat'),
+              onMembersTap: () => context.pushNamed('/room-members'),
+              onQuizzesTap: () => context.pushNamed(
+                AppRoutes.quizListScreen,
+                extra: {'roomId': widget.roomId, 'roomName': widget.roomName},
+              ),
+            ),
             Expanded(
               child: BlocBuilder<ChatCubit, ChatState>(
                 builder: (context, state) {
@@ -100,7 +110,7 @@ class _RoomChatScreenState extends State<RoomChatScreen> {
                 },
               ),
             ),
-            const ChatInputField(),
+            ChatInputField(roomId: widget.roomId),
           ],
         ),
       ),

@@ -51,7 +51,7 @@ class ChatHeaderInfo extends StatelessWidget {
               ],
             ),
           ),
-          const CustomChatTabs(),
+
         ],
       ),
     );

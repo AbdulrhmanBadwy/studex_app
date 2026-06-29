@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:studex_graduation_project/core/di/injection_container.dart';
 
 import 'core/config/app_config.dart';
 import 'core/config/firebase_config.dart';
@@ -18,6 +19,7 @@ import 'repositories/chat_repository.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FirebaseConfig.initialize();
+  await init();
   runApp(const MyApp());
 
   FirebaseFirestore.instance.settings = const Settings(
