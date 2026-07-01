@@ -33,7 +33,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
         backgroundColor: AppColors.whiteColor,
-        title: Text('Create Account', style: AppStyles.bold20black),
+        title: Text(
+          'إنشاء حساب',
+          style: AppStyles.bold20black.copyWith(fontFamily: 'AbdoMaster'),
+        ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -49,10 +52,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 width: width * 0.3,
                 height: height * 0.09,
               ),
-              Text('Studex', style: AppStyles.bold30black),
               Text(
-                'Welcome back to your educational journey',
-                style: AppStyles.medium16grey,
+                'Studex',
+                style: AppStyles.bold30black.copyWith(fontFamily: 'AbdoMaster'),
+              ),
+              Text(
+                'أهلاً بيك تاني في رحلتك التعليمية',
+                style: AppStyles.medium16grey.copyWith(
+                  fontFamily: 'AbdoMaster',
+                ),
               ),
               SizedBox(height: height * 0.05),
               Form(
@@ -61,43 +69,58 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text('Name', style: AppStyles.medium16black),
+                      Text(
+                        'الاسم',
+                        style: AppStyles.medium16black.copyWith(
+                          fontFamily: 'AbdoMaster',
+                        ),
+                      ),
                       CustomTextFormFieldd(
-                        hintText: 'Name',
+                        hintText: 'الاسم',
                         prefixIcon: Image.asset(AssetsPaths.iconName),
                         keyboardType: TextInputType.name,
                         controller: nameController,
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
-                            return ('please Enter name');
+                            return ('من فضلك أدخل الاسم');
                           }
                           return null;
                         },
                       ),
                       SizedBox(height: height * 0.02),
-                      Text('Email', style: AppStyles.medium16black),
+                      Text(
+                        'البريد الإلكتروني',
+                        style: AppStyles.medium16black.copyWith(
+                          fontFamily: 'AbdoMaster',
+                        ),
+                      ),
                       CustomTextFormFieldd(
-                        hintText: 'Email',
+                        hintText: 'البريد الإلكتروني',
                         prefixIcon: Image.asset(AssetsPaths.logoEmail),
                         keyboardType: TextInputType.emailAddress,
                         controller: emailController,
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
-                            return ('please Enter Email');
+                            return ('من فضلك أدخل البريد الإلكتروني');
                           }
                           final bool emailValid = RegExp(
                             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
                           ).hasMatch(text);
                           if (!emailValid) {
-                            return 'please Enter Valid Email';
+                            return 'من فضلك أدخل بريد إلكتروني صحيح';
                           }
                           return null;
                         },
                       ),
                       SizedBox(height: height * 0.02),
-                      Text('Password', style: AppStyles.medium16black),
+                      Text(
+                        'كلمة المرور',
+                        style: AppStyles.medium16black.copyWith(
+                          fontFamily: 'AbdoMaster',
+                        ),
+                      ),
                       CustomTextFormFieldd(
-                        hintText: 'Password',
+                        hintText: 'كلمة المرور',
                         prefixIcon: Image.asset(AssetsPaths.logoPassword),
                         suffixIcon: Image.asset(AssetsPaths.logoShowPassword),
                         keyboardType: TextInputType.phone,
@@ -105,15 +128,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: passwordController,
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
-                            return ('please Enter Password');
+                            return ('من فضلك أدخل كلمة المرور');
                           }
                           return null;
                         },
                       ),
                       SizedBox(height: height * 0.02),
-                      Text('Confirm Password', style: AppStyles.medium16black),
+                      Text(
+                        'تأكيد كلمة المرور',
+                        style: AppStyles.medium16black.copyWith(
+                          fontFamily: 'AbdoMaster',
+                        ),
+                      ),
                       CustomTextFormFieldd(
-                        hintText: 'Confirm Password',
+                        hintText: 'تأكيد كلمة المرور',
                         prefixIcon: Image.asset(AssetsPaths.logoPassword),
                         suffixIcon: Image.asset(AssetsPaths.logoShowPassword),
                         keyboardType: TextInputType.phone,
@@ -121,25 +149,40 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: passwordController,
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
-                            return ('please Enter Password');
+                            return ('من فضلك أدخل كلمة المرور');
                           }
                           return null;
                         },
                       ),
                       SizedBox(height: height * 0.02),
-                      Text('University', style: AppStyles.medium16black),
+                      Text(
+                        'الجامعة',
+                        style: AppStyles.medium16black.copyWith(
+                          fontFamily: 'AbdoMaster',
+                        ),
+                      ),
                       CustomDropdownButtonFormField(
                         type: DropdownType.university,
                       ),
                       SizedBox(height: height * 0.02),
-                      Text('Section', style: AppStyles.medium16black),
+                      Text(
+                        'التخصص',
+                        style: AppStyles.medium16black.copyWith(
+                          fontFamily: 'AbdoMaster',
+                        ),
+                      ),
                       CustomDropdownButtonFormField(type: DropdownType.major),
                       SizedBox(height: height * 0.02),
-                      Text('Academic Year', style: AppStyles.medium16black),
+                      Text(
+                        'الفرقة الدراسية',
+                        style: AppStyles.medium16black.copyWith(
+                          fontFamily: 'AbdoMaster',
+                        ),
+                      ),
                       CustomDropdownButtonFormField(type: DropdownType.year),
                       SizedBox(height: height * 0.04),
                       CustomElevatedButton(
-                        text: 'Create Account',
+                        text: 'إنشاء حساب',
                         onPressed: createAccount,
                       ),
                       SizedBox(height: height * 0.02),
@@ -147,15 +190,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Don\'t have an account?',
-                            style: AppStyles.bold16black,
+                            'عندك حساب بالفعل؟',
+                            style: AppStyles.bold16black.copyWith(
+                              fontFamily: 'AbdoMaster',
+                            ),
                           ),
                           TextButton(
                             onPressed: () {
                               context.pushNamed(AppRoutes.loginRoute);
                             },
                             child: Text(
-                              'Login',
+                              'تسجيل الدخول',
                               style: AppStyles.bold16primary.copyWith(
                                 decoration: TextDecoration.underline,
                                 decorationColor: AppColors.primaryLight,

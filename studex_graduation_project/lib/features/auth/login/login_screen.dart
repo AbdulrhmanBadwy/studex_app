@@ -40,10 +40,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: width * 0.3,
                 height: height * 0.09,
               ),
-              Text('Studex', style: AppStyles.bold30black),
               Text(
-                'Welcome back to your educational journey',
-                style: AppStyles.medium16grey,
+                'Studex',
+                style: AppStyles.bold30black.copyWith(fontFamily: 'AbdoMaster'),
+              ),
+              Text(
+                'أهلاً بيك تاني في رحلتك التعليمية',
+                style: AppStyles.medium16grey.copyWith(
+                  fontFamily: 'AbdoMaster',
+                ),
               ),
               SizedBox(height: height * 0.05),
               Form(
@@ -53,26 +58,26 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       CustomTextFormFieldd(
-                        hintText: 'Email',
+                        hintText: 'البريد الإلكتروني',
                         prefixIcon: Image.asset(AssetsPaths.logoEmail),
                         keyboardType: TextInputType.emailAddress,
                         controller: emailController,
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
-                            return ('please Enter Email');
+                            return ('من فضلك أدخل البريد الإلكتروني');
                           }
                           final bool emailValid = RegExp(
                             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
                           ).hasMatch(text);
                           if (!emailValid) {
-                            return 'please Enter Valid Email';
+                            return 'من فضلك أدخل بريد إلكتروني صحيح';
                           }
                           return null;
                         },
                       ),
                       SizedBox(height: height * 0.02),
                       CustomTextFormFieldd(
-                        hintText: 'Password',
+                        hintText: 'كلمة المرور',
                         prefixIcon: Image.asset(AssetsPaths.logoPassword),
                         suffixIcon: Image.asset(AssetsPaths.logoShowPassword),
                         keyboardType: TextInputType.phone,
@@ -80,20 +85,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: passwordController,
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
-                            return ('please Enter Password');
+                            return ('من فضلك أدخل كلمة المرور');
                           }
                           return null;
                         },
                       ),
                       SizedBox(height: height * 0.02),
                       Container(
-                        alignment: Alignment.centerRight,
+                        alignment: AlignmentDirectional.centerEnd,
                         child: TextButton(
                           onPressed: () {
                             context.pushNamed(AppRoutes.rePasswordRoute);
                           },
                           child: Text(
-                            'Forget Password?',
+                            'نسيت كلمة المرور؟',
                             style: AppStyles.bold16primary.copyWith(
                               decoration: TextDecoration.underline,
                               decorationColor: AppColors.primaryLight,
@@ -102,21 +107,23 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(height: height * 0.02),
-                      CustomButton(onPressed: login, text: 'Login'),
+                      CustomButton(onPressed: login, text: 'تسجيل الدخول'),
                       SizedBox(height: height * 0.02),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Don\'t have an account?',
-                            style: AppStyles.bold16black,
+                            'معندكش حساب؟',
+                            style: AppStyles.bold16black.copyWith(
+                              fontFamily: 'AbdoMaster',
+                            ),
                           ),
                           TextButton(
                             onPressed: () {
                               context.pushNamed(AppRoutes.registerRoute);
                             },
                             child: Text(
-                              'Create Account',
+                              'إنشاء حساب',
                               style: AppStyles.bold16primary.copyWith(
                                 decoration: TextDecoration.underline,
                                 decorationColor: AppColors.primaryLight,
@@ -136,7 +143,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               endIndent: width * 0.04,
                             ),
                           ),
-                          Text('Or', style: AppStyles.medium16primary),
+                          Text(
+                            'أو',
+                            style: AppStyles.medium16primary.copyWith(
+                              fontFamily: 'AbdoMaster',
+                            ),
+                          ),
                           Expanded(
                             child: Divider(
                               color: AppColors.primaryLight,
@@ -160,8 +172,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             Image.asset(AssetsPaths.iconGoogle),
                             SizedBox(width: width * 0.03),
                             Text(
-                              'Login with Google',
-                              style: AppStyles.bold20primary,
+                              'تسجيل الدخول بواسطة جوجل',
+                              style: AppStyles.bold20primary.copyWith(
+                                fontFamily: 'AbdoMaster',
+                              ),
                             ),
                           ],
                         ),
@@ -222,6 +236,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ).showSnackBar(SnackBar(content: Text(e.toString())));
     }
   }
-
 }
-

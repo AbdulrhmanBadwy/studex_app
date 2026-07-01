@@ -31,23 +31,24 @@ class _OnBoardingTwoState extends State<OnBoardingTwo> {
                 context.go(AppRoutes.loginRoute);
               },
               child: Text(
-                'Skip',
+                'تخطي',
                 style: TextStyle(
                   fontSize: 20.w,
                   color: Theme.of(context).primaryColor,
+                  fontFamily: 'AbdoMaster',
                 ),
               ),
             ),
             Center(child: Image.asset(AssetsPaths.onboarding2)),
             HeightSpacing(25),
             Text(
-              'Communicate with your colleagues easily.',
-              style: AppStyles.bold20black,
+              'تواصل مع زمايلك بسهولة.',
+              style: AppStyles.bold20black.copyWith(fontFamily: 'AbdoMaster'),
             ),
             HeightSpacing(15),
             Text(
-              'Join public study rooms or create your own private rooms and chat with your friends.',
-              style: AppStyles.medium16black,
+              'انضم لغرف مذاكرة عامة أو اعمل غرفة خاصة بيك وتكلم مع أصحابك.',
+              style: AppStyles.medium16black.copyWith(fontFamily: 'AbdoMaster'),
             ),
 
             Spacer(),
@@ -56,7 +57,7 @@ class _OnBoardingTwoState extends State<OnBoardingTwo> {
                 onPressed: () {
                   context.pushNamed(AppRoutes.onBoardingThree);
                 },
-                text: 'Next',
+                text: 'التالي',
               ),
             ),
           ],
