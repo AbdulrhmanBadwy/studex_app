@@ -12,7 +12,12 @@ class RemoteDataSourceImpl implements QuizRemoteDataSource {
         .doc(roomId)
         .collection('quizzes')
         .doc(quiz.id)
-        .set(quiz.toJson());
+        .set({
+          ...quiz.toJson(),
+          'roomId': roomId,
+          'createdAt': FieldValue.serverTimestamp(),
+          'resultsCount': 0,
+        });
   }
 
   @override
@@ -82,20 +87,31 @@ class RemoteDataSourceImpl implements QuizRemoteDataSource {
     List<int> answers,
     int score,
   ) {
-    return fireStore
+    final quizRef = fireStore
         .collection('rooms')
         .doc(roomId)
         .collection('quizzes')
-        .doc(quizId)
-        .collection('results')
-        .doc(userId)
-        .set({
-          'userId': userId,
-          'quizId': quizId,
-          'answers': answers,
-          'score': score,
-          'totalQuestions': answers.length,
-          'submittedAt': FieldValue.serverTimestamp(),
+        .doc(quizId);
+    final resultRef = quizRef.collection('results').doc(userId);
+
+    return fireStore
+        .runTransaction((transaction) async {
+          final existingResult = await transaction.get(resultRef);
+          if (existingResult.exists) {
+            return;
+          }
+
+          transaction.set(resultRef, {
+            'userId': userId,
+            'quizId': quizId,
+            'answers': answers,
+            'score': score,
+            'totalQuestions': answers.length,
+            'submittedAt': FieldValue.serverTimestamp(),
+          });
+          transaction.update(quizRef, {
+            'resultsCount': FieldValue.increment(1),
+          });
         })
         .catchError((error) {
           throw Exception(error);

@@ -140,7 +140,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       SizedBox(height: height * 0.04),
                       CustomElevatedButton(
                         text: 'Create Account',
-                        onPressed: CreateAccount,
+                        onPressed: createAccount,
                       ),
                       SizedBox(height: height * 0.02),
                       Row(
@@ -175,7 +175,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  Future<void> CreateAccount() async {
+  Future<void> createAccount() async {
     if (formKey.currentState?.validate() != true) return;
 
     try {

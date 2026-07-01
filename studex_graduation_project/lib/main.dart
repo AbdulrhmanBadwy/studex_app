@@ -7,14 +7,12 @@ import 'package:studex_graduation_project/core/di/injection_container.dart';
 
 import 'core/config/app_config.dart';
 import 'core/config/firebase_config.dart';
-import 'core/routes/app_router_generation.dart';
 import 'core/routes/app_router_generation.dart' as RouterGenerationConfig;
 import 'core/theme/app_themes.dart';
 import 'blocs/auth/auth_bloc.dart';
 import 'blocs/user/user_bloc.dart';
 import 'repositories/auth_repository.dart';
 import 'repositories/user_repository.dart';
-import 'repositories/chat_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

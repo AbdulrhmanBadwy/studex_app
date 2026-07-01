@@ -6,17 +6,23 @@ class QuizModel extends QuizEntity {
     required super.id,
     required super.title,
     required super.description,
+    required super.roomId,
+    super.createdAt,
+    super.resultsCount,
 
     required List<QuestionModel> questions,
   }) : super(questions: questions);
 
   factory QuizModel.fromJson(Map<String, dynamic> json) {
     return QuizModel(
-      id: json['id'],
-      title: json['title'],
-      description: json['description'],
+      id: json['id'] as String? ?? '',
+      title: json['title'] as String? ?? '',
+      description: json['description'] as String? ?? '',
+      roomId: json['roomId'] as String? ?? '',
+      createdAt: QuizEntity.parseCreatedAt(json['createdAt']),
+      resultsCount: (json['resultsCount'] as num?)?.toInt() ?? 0,
 
-      questions: (json['questions'] as List)
+      questions: (json['questions'] as List<dynamic>? ?? const [])
           .map((e) => QuestionModel.fromJson(e))
           .toList(),
     );
@@ -26,6 +32,9 @@ class QuizModel extends QuizEntity {
       id: entity.id,
       title: entity.title,
       description: entity.description,
+      roomId: entity.roomId,
+      createdAt: entity.createdAt,
+      resultsCount: entity.resultsCount,
       questions: entity.questions
           .map((q) => QuestionModel.fromEntity(q))
           .toList(),
@@ -37,6 +46,9 @@ class QuizModel extends QuizEntity {
       'id': id,
       'title': title,
       'description': description,
+      'roomId': roomId,
+      'createdAt': createdAt,
+      'resultsCount': resultsCount,
 
       'questions': questions.map((e) => (e as QuestionModel).toJson()).toList(),
     };

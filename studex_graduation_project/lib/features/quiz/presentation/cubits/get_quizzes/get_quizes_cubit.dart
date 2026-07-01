@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:studex_graduation_project/features/quiz/domain/entites/quiz_entity.dart';
 import 'package:studex_graduation_project/features/quiz/domain/use_cases/get_quizzes.dart';
 import 'package:studex_graduation_project/features/quiz/presentation/cubits/get_quizzes/get_quizes_state.dart';
 

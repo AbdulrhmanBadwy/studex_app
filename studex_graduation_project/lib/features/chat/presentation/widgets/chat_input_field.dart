@@ -9,8 +9,9 @@ import 'package:studex_graduation_project/features/chat/presentation/cubits/chat
     show ChatCubit;
 
 class ChatInputField extends StatefulWidget {
-  String roomId;
-  ChatInputField({super.key, required this.roomId});
+  final String roomId;
+
+  const ChatInputField({super.key, required this.roomId});
 
   @override
   State<ChatInputField> createState() => _ChatInputFieldState();
