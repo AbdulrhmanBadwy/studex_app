@@ -138,7 +138,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 HeightSpacing(32),
                 Text(
-                  'المظهر',
+                  'عنا',
                   style: AppStyles.primaryHeadlineStyle.copyWith(
                     color: AppColors.primaryAllColor,
                     fontSize: 18.sp,

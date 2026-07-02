@@ -36,6 +36,7 @@ class HomeCubit extends Cubit<HomeState> {
     _completedQuizKeys.clear();
     _joinedRoomIds = {};
 
+    await AuthService.instance.ready;
     final currentUser = AuthService.instance.currentUser;
     if (currentUser == null) {
       emit(
