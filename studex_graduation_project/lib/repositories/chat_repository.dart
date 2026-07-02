@@ -32,11 +32,21 @@ class FirestoreChatRepository implements ChatRepository {
 
   @override
   Future<void> sendMessage(String roomId, MessageModel message) async {
-    await _roomsCollection
-        .doc(roomId)
-        .collection('messages')
-        .doc(message.id)
-        .set(message.toJson());
+    final roomRef = _roomsCollection.doc(roomId);
+    final messageRef = roomRef.collection('messages').doc(message.id);
+    final previewMessage = message.message.length > 100
+        ? message.message.substring(0, 100)
+        : message.message;
+
+    final batch = _firestore.batch();
+    batch.set(messageRef, message.toJson());
+    batch.update(roomRef, {
+      'lastMessage': previewMessage,
+      'lastMessageAt': FieldValue.serverTimestamp(),
+      'lastSenderId': message.senderId,
+    });
+
+    await batch.commit();
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studex_graduation_project/core/theme/app_colors.dart';
 
 import 'package:studex_graduation_project/core/theme/app_styles.dart';
@@ -28,11 +29,15 @@ class _OnBoardingState extends State<OnBoarding> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextButton(
-              onPressed: () {
+              onPressed: () async {
+                final prefs = await SharedPreferences.getInstance();
+                await prefs.setBool('seen_onboarding', true);
+
+                if (!mounted) return;
                 context.go(AppRoutes.loginRoute);
               },
               child: Text(
-                'Skip',
+                'تخطي',
                 style: TextStyle(
                   fontSize: 20.sp,
                   color: Theme.of(context).primaryColor,
@@ -41,13 +46,13 @@ class _OnBoardingState extends State<OnBoarding> {
             ),
             Image.asset(AssetsPaths.onboard, width: 340.w, height: 340.h),
             Text(
-              'Organize your studying in one place.',
-              style: AppStyles.bold20black,
+              'نظّم مذاكرتك في مكان واحد.',
+              style: AppStyles.bold20black.copyWith(fontFamily: 'AbdoMaster'),
             ),
             HeightSpacing(15),
             Text(
-              'Everything you need to organize your study schedule in one easy-to-use place.',
-              style: AppStyles.medium16black,
+              'كل اللي محتاجه لتنظيم جدول مذاكرتك في مكان واحد سهل الاستخدام.',
+              style: AppStyles.medium16black.copyWith(fontFamily: 'AbdoMaster'),
             ),
             Spacer(),
             Center(
@@ -55,7 +60,7 @@ class _OnBoardingState extends State<OnBoarding> {
                 onPressed: () {
                   context.pushNamed(AppRoutes.onBoardingTwo);
                 },
-                text: 'Next',
+                text: 'التالي',
               ),
             ),
           ],

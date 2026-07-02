@@ -1,12 +1,46 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isRoomMember(roomId) {
+      return isAuthenticated()
+        && get(/databases/$(database)/documents/rooms/$(roomId)).data.members.hasAny([request.auth.uid]);
+    }
+
     // Users collection: each user can read and update their own profile
     match /users/{userId} {
-      allow read: if request.auth.uid == userId;
-      allow write: if request.auth.uid == userId;
-      allow create: if request.auth.uid == userId;
+      allow read, create, update: if request.auth.uid == userId;
       allow delete: if false; // prevent deletion of own profile
+    }
+
+    match /rooms/{roomId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated();
+
+      match /quizzes/{quizId} {
+        allow read: if isRoomMember(roomId);
+        allow create: if isRoomMember(roomId)
+          && request.resource.data.roomId == roomId
+          && request.resource.data.resultsCount == 0;
+        allow update: if isRoomMember(roomId)
+          && request.resource.data.diff(resource.data).changedKeys().hasOnly(['resultsCount'])
+          && request.resource.data.resultsCount == resource.data.resultsCount + 1;
+        allow delete: if false;
+
+        match /results/{userId} {
+          allow read, create: if isRoomMember(roomId) && request.auth.uid == userId;
+          allow update, delete: if false;
+        }
+      }
+
+      match /messages/{messageId} {
+        allow read, create: if isRoomMember(roomId);
+        allow update, delete: if false;
+      }
     }
 
     // All other collections: deny by default (will be refined in TASK-027+)

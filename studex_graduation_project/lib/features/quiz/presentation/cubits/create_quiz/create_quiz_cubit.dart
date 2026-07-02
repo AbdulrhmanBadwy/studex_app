@@ -25,6 +25,7 @@ class CreateQuizCubit extends Cubit<CreateQuizState> {
         id: const Uuid().v4(),
         title: title,
         description: description,
+        roomId: roomId,
         questions: questions
             .map(
               (q) => QuestionEntity(

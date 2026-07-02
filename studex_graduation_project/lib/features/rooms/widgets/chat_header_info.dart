@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:studex_graduation_project/core/widgets/spacing.dart';
 
-import 'custom_chat_tabs.dart';
 
 class ChatHeaderInfo extends StatelessWidget {
   const ChatHeaderInfo({super.key});

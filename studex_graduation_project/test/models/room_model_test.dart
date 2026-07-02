@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:studex_graduation_project/models/room_model.dart';
 
 void main() {
@@ -48,6 +49,27 @@ void main() {
     });
 
     expect(room.members, ['u4', '99', 'true']);
+  });
+
+  test('RoomModel parses nullable metadata safely', () {
+    final timestamp = Timestamp.fromDate(DateTime(2026, 1, 2, 3, 4));
+
+    final room = RoomModel.fromJson({
+      'id': 'r4',
+      'name': 'Biology',
+      'description': 'Lab',
+      'type': 'public',
+      'creatorId': 'u5',
+      'createdAt': timestamp,
+      'lastMessage': 'Hello',
+      'lastMessageAt': timestamp,
+      'lastSenderId': 'u6',
+    });
+
+    expect(room.createdAt, timestamp.toDate());
+    expect(room.lastMessageAt, timestamp.toDate());
+    expect(room.lastMessage, 'Hello');
+    expect(room.lastSenderId, 'u6');
   });
 
   test('RoomModel copyWith keeps original room intact', () {

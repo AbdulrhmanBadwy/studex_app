@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studex_graduation_project/core/theme/app_styles.dart';
 import 'package:studex_graduation_project/core/widgets/spacing.dart';
 import 'package:studex_graduation_project/core/routes/app_routes.dart';
@@ -29,21 +30,25 @@ class _OnBoardingThreeState extends State<OnBoardingThree> {
           children: [
             Image.asset(AssetsPaths.onboarding3),
             Text(
-              'Smart tests and tracking board.',
-              style: AppStyles.bold20black,
+              'اختبارات ذكية ولوحة متابعة.',
+              style: AppStyles.bold20black.copyWith(fontFamily: 'AbdoMaster'),
             ),
             HeightSpacing(15),
             Text(
-              'Test your knowledge and track your academic progress through detailed graphs.',
-              style: AppStyles.medium16black,
+              'اختبر معلوماتك وتابع تقدمك الدراسي من خلال رسوم بيانية تفصيلية.',
+              style: AppStyles.medium16black.copyWith(fontFamily: 'AbdoMaster'),
             ),
             Spacer(),
             Center(
               child: CustomButton(
-                onPressed: () {
+                onPressed: () async {
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('seen_onboarding', true);
+
+                  if (!mounted) return;
                   context.go(AppRoutes.loginRoute);
                 },
-                text: 'Start Now',
+                text: 'ابدأ الآن',
               ),
             ),
           ],

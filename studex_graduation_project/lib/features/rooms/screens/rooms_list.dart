@@ -59,14 +59,14 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
       if (!mounted) return;
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Joined successfully')));
+      ).showSnackBar(const SnackBar(content: Text('تم الإنضمام بنجاح ')));
       _openChat(room);
     } on StateError catch (e) {
       if (!mounted) return;
       if (e.message == 'Room does not exist.') {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('Room no longer exists')));
+        ).showSnackBar(const SnackBar(content: Text('الغرفة لم تعد موجوده ')));
         return;
       }
       ScaffoldMessenger.of(
@@ -80,7 +80,7 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to join room. ${e.toString()}')),
+        SnackBar(content: Text('فشل الإنضمام إلي الغرفة  ${e.toString()}')),
       );
     }
   }
@@ -100,7 +100,7 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
             if (snapshot.hasError) {
               return Center(
                 child: Text(
-                  'Unable to load rooms.',
+                  'تعذر تحميل الغرفة ',
                   style: TextStyle(color: Colors.red.shade700),
                 ),
               );
@@ -112,7 +112,7 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
 
             final rooms = snapshot.data ?? const <RoomModel>[];
             if (rooms.isEmpty) {
-              return const Center(child: Text('No rooms available'));
+              return const Center(child: Text('لا يوجد غرف متاحه '));
             }
 
             return ListView.builder(
@@ -126,7 +126,7 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
                 return RoomCard(
                   title: room.name,
                   description: room.description,
-                  buttonText: isJoined ? 'Already Joined' : 'Join',
+                  buttonText: isJoined ? 'منضم بالفعل ' : 'دخول',
                   buttonEnabled: !isJoined,
                   onCardTap: isJoined ? () => _openChat(room) : null,
                   onJoinPressed: () => _joinRoom(room),

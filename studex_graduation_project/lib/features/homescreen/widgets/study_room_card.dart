@@ -6,18 +6,34 @@ class StudyRoomCard extends StatelessWidget {
   final String title;
   final String count;
   final Color imageColor;
+  final String roomId;
 
   const StudyRoomCard({
     super.key,
     required this.title,
     required this.count,
     required this.imageColor,
+    required this.roomId,
   });
+
+  void _openChat(BuildContext context) {
+    if (roomId.isEmpty) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Missing room id.')));
+      return;
+    }
+
+    context.pushNamed(
+      AppRoutes.roomChatScreen,
+      extra: {'roomId': roomId, 'roomName': title},
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.pushNamed(AppRoutes.roomChatScreen),
+      onTap: () => _openChat(context),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -65,7 +81,10 @@ class StudyRoomCard extends StatelessWidget {
                       const SizedBox(width: 4),
                       Text(
                         count,
-                        style: const TextStyle(color: Colors.grey, fontSize: 12),
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12,
+                        ),
                       ),
                       const Spacer(),
                       const Text(
@@ -78,8 +97,8 @@ class StudyRoomCard extends StatelessWidget {
               ),
             ),
           ],
+        ),
       ),
-      )
     );
   }
 }

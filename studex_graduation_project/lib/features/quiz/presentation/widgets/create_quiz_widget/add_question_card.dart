@@ -46,8 +46,9 @@ class AddQuestionCardState extends State<AddQuestionCard> {
         ? ['صح', 'خطأ']
         : _optionControllers.map((c) => c.text.trim()).toList();
 
-    if (_selectedType != 'صح أو خطأ' && options.any((o) => o.isEmpty))
+    if (_selectedType != 'صح أو خطأ' && options.any((o) => o.isEmpty)) {
       return null;
+    }
 
     return QuestionData(
       question: _questionController.text.trim(),
