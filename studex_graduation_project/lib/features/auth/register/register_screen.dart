@@ -37,48 +37,49 @@ class _RegisterScreenState extends State<RegisterScreen> {
         if (state is AuthSuccess) {
           context.go(AppRoutes.homeScreen);
         } else if (state is AuthFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message)),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
         }
       },
       child: Scaffold(
         backgroundColor: AppColors.whiteColor,
         appBar: AppBar(
-        backgroundColor: AppColors.whiteColor,
-        title: Text(
-          'إنشاء حساب',
-          style: AppStyles.bold20black.copyWith(fontFamily: 'AbdoMaster'),
-        ),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: width * 0.02,
-            vertical: height * 0.03,
+          backgroundColor: AppColors.whiteColor,
+          title: Text(
+            'إنشاء حساب',
+            style: AppStyles.bold20black.copyWith(fontFamily: 'AbdoMaster'),
           ),
-          child: Column(
-            children: [
-              Image.asset(
-                AssetsPaths.iconCreate,
-                width: width * 0.3,
-                height: height * 0.09,
-              ),
-              Text(
-                'Studex',
-                style: AppStyles.bold30black.copyWith(fontFamily: 'AbdoMaster'),
-              ),
-              Text(
-                'أهلاً بيك تاني في رحلتك التعليمية',
-                style: AppStyles.medium16grey.copyWith(
-                  fontFamily: 'AbdoMaster',
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: width * 0.02,
+              vertical: height * 0.03,
+            ),
+            child: Column(
+              children: [
+                Image.asset(
+                  AssetsPaths.iconCreate,
+                  width: width * 0.3,
+                  height: height * 0.09,
                 ),
-              ),
-              SizedBox(height: height * 0.05),
-              Form(
-                key: formKey,
-                child: Expanded(
+                Text(
+                  'Studex',
+                  style: AppStyles.bold30black.copyWith(
+                    fontFamily: 'AbdoMaster',
+                  ),
+                ),
+                Text(
+                  'أهلاً بيك تاني في رحلتك التعليمية',
+                  style: AppStyles.medium16grey.copyWith(
+                    fontFamily: 'AbdoMaster',
+                  ),
+                ),
+                SizedBox(height: height * 0.05),
+                Form(
+                  key: formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -225,14 +226,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ],
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   void createAccount() {
     if (formKey.currentState?.validate() != true) return;

@@ -1,4 +1,4 @@
-﻿import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../models/user_model.dart';
 import '../core/constants/user_roles.dart';
@@ -59,17 +59,23 @@ class FirebaseAuthRepository implements AuthRepository {
     );
     final user = userCredential.user;
     if (user != null) {
+      // Build userModel using the input name parameter directly to minimize Firestore delay
+      final userModel = UserModel(
+        uid: user.uid,
+        email: email,
+        name: name,
+        role: UserRoles.student,
+      );
+      // Create user profile in Firestore immediately after registration
+      await _userRepository.createUserProfile(userModel);
+
       await user.updateDisplayName(name);
       await user.reload();
       final updatedUser = _firebaseAuth.currentUser;
       if (updatedUser != null) {
-        final userModel = _mapFirebaseUser(updatedUser);
-        if (userModel != null) {
-          // Create user profile in Firestore immediately after registration
-          await _userRepository.createUserProfile(userModel);
-        }
-        return userModel;
+        return _mapFirebaseUser(updatedUser);
       }
+      return userModel;
     }
     return _mapFirebaseUser(user);
   }

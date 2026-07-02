@@ -46,6 +46,7 @@ class HomeState {
 
   HomeState copyWith({
     UserModel? currentUser,
+    bool clearCurrentUser = false,
     List<RoomModel>? joinedRooms,
     List<RoomModel>? availableRooms,
     HomeSectionStatus? roomsStatus,
@@ -62,7 +63,7 @@ class HomeState {
     bool clearTaskMessage = false,
   }) {
     return HomeState(
-      currentUser: currentUser ?? this.currentUser,
+      currentUser: clearCurrentUser ? null : (currentUser ?? this.currentUser),
       joinedRooms: joinedRooms ?? this.joinedRooms,
       availableRooms: availableRooms ?? this.availableRooms,
       roomsStatus: roomsStatus ?? this.roomsStatus,

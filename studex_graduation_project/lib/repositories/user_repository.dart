@@ -3,6 +3,7 @@ import '../models/user_model.dart';
 
 abstract class UserRepository {
   Future<UserModel?> getCurrentUser(String uid);
+  Stream<UserModel?> watchCurrentUser(String uid);
   Future<void> createUserProfile(UserModel user);
   Future<void> updateProfile(UserModel user);
 }
@@ -23,6 +24,16 @@ class FirestoreUserRepository implements UserRepository {
       return UserModel.fromJson(doc.data()!);
     }
     return null;
+  }
+
+  @override
+  Stream<UserModel?> watchCurrentUser(String uid) {
+    return _usersCollection.doc(uid).snapshots().map((doc) {
+      if (doc.exists && doc.data() != null) {
+        return UserModel.fromJson(doc.data()!);
+      }
+      return null;
+    });
   }
 
   @override
