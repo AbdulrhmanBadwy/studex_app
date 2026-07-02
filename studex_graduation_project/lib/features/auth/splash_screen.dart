@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/constants/assets_paths.dart';
 import '../../core/routes/app_routes.dart';
-import '../../core/services/auth_service.dart';
+import '../../blocs/auth/auth_bloc.dart';
+import '../../blocs/auth/auth_state.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -54,15 +56,6 @@ class _SplashScreenState extends State<SplashScreen>
         _go(_pendingRoute!);
       }
     });
-
-    final current = AuthService.instance.currentUser;
-
-    if (current != null) {
-      _queueOrGo(AppRoutes.homeScreen);
-      return;
-    }
-
-    _queueOrGo(AppRoutes.onBoarding);
   }
 
   @override
@@ -98,17 +91,26 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: FadeTransition(
-          opacity: _fadeAnimation,
-          child: ScaleTransition(
-            scale: _scaleAnimation,
-            child: Image.asset(
-              AssetsPaths.appIcon,
-              width: 150.w,
-              height: 150.h,
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is AuthSuccess) {
+          _queueOrGo(AppRoutes.homeScreen);
+        } else if (state is AuthLoggedOut) {
+          _queueOrGo(AppRoutes.onBoarding);
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: FadeTransition(
+            opacity: _fadeAnimation,
+            child: ScaleTransition(
+              scale: _scaleAnimation,
+              child: Image.asset(
+                AssetsPaths.appIcon,
+                width: 150.w,
+                height: 150.h,
+              ),
             ),
           ),
         ),

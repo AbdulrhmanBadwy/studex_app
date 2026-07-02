@@ -1,4 +1,5 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:studex_graduation_project/core/constants/assets_paths.dart';
@@ -7,6 +8,9 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_styles.dart';
 import 'package:studex_graduation_project/core/routes/app_routes.dart';
 import '../../../repositories/auth_repository.dart';
+import '../../../blocs/auth/auth_bloc.dart';
+import '../../../blocs/auth/auth_event.dart';
+import '../../../blocs/auth/auth_state.dart';
 import '../../widgets/custom_botton.dart';
 import '../../widgets/custom_text_form_field.dart';
 
@@ -28,7 +32,17 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return Scaffold(
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is AuthSuccess) {
+          context.go(AppRoutes.homeScreen);
+        } else if (state is AuthFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.message)),
+          );
+        }
+      },
+      child: Scaffold(
       backgroundColor: AppColors.whiteColor,
       body: SafeArea(
         child: Padding(
@@ -188,34 +202,19 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
-  // void login(){
-  //   if(formKey.currentState?.validate() == true){
-  //    // Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.registerRoute, (route) => false,);
-  //   }
-  Future<void> login() async {
+  void login() {
     if (formKey.currentState?.validate() != true) return;
 
-    try {
-      final authRepository = FirebaseAuthRepository();
-
-      await authRepository.signIn(
+    context.read<AuthBloc>().add(
+      LoginRequested(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
-      );
-
-      if (!mounted) return;
-
-      context.go(AppRoutes.homeScreen);
-    } catch (e) {
-      debugPrint('REGISTER ERROR: $e');
-
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(e.toString())));
-    }
+      ),
+    );
   }
 
   Future<void> loginWithGoogle() async {

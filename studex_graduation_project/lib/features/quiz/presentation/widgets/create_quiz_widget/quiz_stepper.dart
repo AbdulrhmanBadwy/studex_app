@@ -26,13 +26,6 @@ class QuizStepper extends StatelessWidget {
               isActive: currentStep == 2,
               isDone: false,
             ),
-            _StepLine(isActive: false),
-            _StepCircle(
-              number: 3,
-              label: 'النشر',
-              isActive: false,
-              isDone: false,
-            ),
           ],
         ),
       ),

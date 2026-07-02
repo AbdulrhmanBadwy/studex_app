@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:studex_graduation_project/core/theme/app_colors.dart';
 import 'package:studex_graduation_project/core/theme/app_styles.dart';
@@ -9,7 +10,9 @@ import 'package:studex_graduation_project/features/widgets/custom_text_form_fiel
 import '../../../core/constants/assets_paths.dart';
 import 'package:studex_graduation_project/core/routes/app_routes.dart';
 
-import '../../../repositories/auth_repository.dart';
+import '../../../blocs/auth/auth_bloc.dart';
+import '../../../blocs/auth/auth_event.dart';
+import '../../../blocs/auth/auth_state.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -29,9 +32,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: AppColors.whiteColor,
-      appBar: AppBar(
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is AuthSuccess) {
+          context.go(AppRoutes.homeScreen);
+        } else if (state is AuthFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.message)),
+          );
+        }
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.whiteColor,
+        appBar: AppBar(
         backgroundColor: AppColors.whiteColor,
         title: Text(
           'إنشاء حساب',
@@ -217,30 +230,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
-  Future<void> createAccount() async {
+  void createAccount() {
     if (formKey.currentState?.validate() != true) return;
 
-    try {
-      final authRepository = FirebaseAuthRepository();
-
-      await authRepository.signUp(
+    context.read<AuthBloc>().add(
+      SignUpRequested(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
         name: nameController.text.trim(),
-      );
-
-      if (!mounted) return;
-
-      context.go(AppRoutes.homeScreen);
-    } catch (e) {
-      debugPrint('REGISTER ERROR: $e');
-
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(e.toString())));
-    }
+      ),
+    );
   }
 }

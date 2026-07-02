@@ -1,8 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studex_graduation_project/core/constants/assets_paths.dart';
 import 'package:studex_graduation_project/core/theme/app_colors.dart';
 import 'package:studex_graduation_project/core/theme/app_styles.dart';
@@ -12,6 +11,9 @@ import 'package:studex_graduation_project/features/settings/widgets/custom_item_
 import 'package:studex_graduation_project/features/settings/widgets/custom_item_notication.dart';
 import 'package:studex_graduation_project/features/settings/widgets/custom_language_item.dart';
 import 'package:studex_graduation_project/core/routes/app_routes.dart';
+import '../../../blocs/auth/auth_bloc.dart';
+import '../../../blocs/auth/auth_event.dart';
+import '../../../blocs/auth/auth_state.dart';
 
 import '../../../core/widgets/spacing.dart';
 
@@ -28,9 +30,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool isDarkMode = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xffF8F6F6),
-      body: SafeArea(
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is AuthLoggedOut) {
+          context.go(AppRoutes.loginRoute);
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Color(0xffF8F6F6),
+        body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -156,13 +164,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 HeightSpacing(48),
                 CustomExitButton(
-                  onPressed: () async{
-                    await FirebaseAuth.instance.signOut();
-                    final prefs = await SharedPreferences.getInstance();
-                    await prefs.clear();
-                    if(context.mounted) {
-                      context.go(AppRoutes.loginRoute);
-                    }
+                  onPressed: () {
+                    context.read<AuthBloc>().add(const LogoutRequested());
                   },
                 ),
                 HeightSpacing(30),
@@ -171,6 +174,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 }
