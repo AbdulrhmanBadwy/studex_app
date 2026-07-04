@@ -9,9 +9,17 @@ class AuthService {
   AuthService._internal(this._authRepository) {
     _subscription = _authRepository.authStateChanges.listen((user) {
       _currentUser = user;
+      if (!_readyCompleter.isCompleted) {
+        _readyCompleter.complete();
+      }
       _controller.add(user);
     });
   }
+
+  final Completer<void> _readyCompleter = Completer<void>();
+
+  /// يكتمل بمجرد وصول أول قيمة فعلية لحالة تسجيل الدخول من Firebase.
+  Future<void> get ready => _readyCompleter.future;
 
   final AuthRepository _authRepository;
   final _controller = StreamController<UserModel?>.broadcast();

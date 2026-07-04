@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:studex_graduation_project/core/routes/app_routes.dart';
 
+import '../../../core/theme/app_colors.dart';
+
 class CustomButtonNavBar extends StatelessWidget {
   final int currentIndex;
 
@@ -11,7 +13,7 @@ class CustomButtonNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: const Color(0xff6A6EF6),
+      selectedItemColor: AppColors.whiteColor,
       unselectedItemColor: Colors.grey,
       currentIndex: currentIndex,
       onTap: (index) {

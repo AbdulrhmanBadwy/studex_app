@@ -7,6 +7,7 @@ import 'package:studex_graduation_project/features/homescreen/cubit/home_state.d
 import 'package:studex_graduation_project/features/quiz/data/models/quiz_model.dart';
 import 'package:studex_graduation_project/features/quiz/domain/entites/quiz_entity.dart';
 import 'package:studex_graduation_project/models/room_model.dart';
+import 'package:studex_graduation_project/models/user_model.dart';
 import 'package:studex_graduation_project/repositories/room_repository.dart';
 import 'package:studex_graduation_project/repositories/user_repository.dart';
 
@@ -14,6 +15,7 @@ class HomeCubit extends Cubit<HomeState> {
   final RoomRepository _roomRepository;
   final UserRepository _userRepository;
   StreamSubscription<List<RoomModel>>? _roomsSubscription;
+  StreamSubscription<UserModel?>? _userSubscription;
   final List<StreamSubscription<QuerySnapshot<Map<String, dynamic>>>>
   _quizSubscriptions = [];
   final Map<String, QuizEntity> _joinedQuizzesByKey = {};
@@ -36,10 +38,13 @@ class HomeCubit extends Cubit<HomeState> {
     _completedQuizKeys.clear();
     _joinedRoomIds = {};
 
+    await AuthService.instance.ready;
     final currentUser = AuthService.instance.currentUser;
     if (currentUser == null) {
+      _userSubscription?.cancel();
       emit(
         state.copyWith(
+          clearCurrentUser: true,
           roomsStatus: HomeSectionStatus.error,
           roomsErrorMessage: 'You must be signed in to view recent chats.',
           taskStatus: HomeSectionStatus.error,
@@ -64,8 +69,12 @@ class HomeCubit extends Cubit<HomeState> {
       ),
     );
 
-    final profile = await _userRepository.getCurrentUser(currentUser.uid);
-    emit(state.copyWith(currentUser: profile ?? currentUser));
+    _userSubscription?.cancel();
+    _userSubscription = _userRepository.watchCurrentUser(currentUser.uid).listen(
+      (profile) {
+        emit(state.copyWith(currentUser: profile ?? currentUser));
+      },
+    );
 
     _roomsSubscription = _roomRepository.getRooms().listen(
       (rooms) {
@@ -330,6 +339,7 @@ class HomeCubit extends Cubit<HomeState> {
   @override
   Future<void> close() async {
     await _roomsSubscription?.cancel();
+    await _userSubscription?.cancel();
     _cancelQuizSubscriptions();
     return super.close();
   }

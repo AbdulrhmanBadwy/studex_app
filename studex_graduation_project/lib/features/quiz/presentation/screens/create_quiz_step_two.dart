@@ -7,6 +7,7 @@ import 'package:studex_graduation_project/core/theme/app_styles.dart';
 import 'package:studex_graduation_project/core/widgets/spacing.dart';
 import 'package:studex_graduation_project/features/quiz/presentation/cubits/create_quiz/create_quiz_cubit.dart';
 import 'package:studex_graduation_project/features/quiz/presentation/cubits/create_quiz/create_quiz_state.dart';
+import 'package:studex_graduation_project/core/routes/app_routes.dart';
 import 'package:studex_graduation_project/features/quiz/presentation/widgets/create_quiz_widget/add_question_card.dart';
 import 'package:studex_graduation_project/features/quiz/presentation/widgets/create_quiz_widget/quiz_stepper.dart';
 import 'package:studex_graduation_project/features/quiz/presentation/widgets/create_quiz_widget/quiz_summary_card.dart';
@@ -33,7 +34,9 @@ class CreateQuizStepTwo extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('تم نشر الاختبار بنجاح ✅')),
           );
-          context.pop();
+          Navigator.of(context).popUntil(
+            (route) => route.settings.name == AppRoutes.quizListScreen,
+          );
         } else if (state is CreateQuizError) {
           ScaffoldMessenger.of(
             context,

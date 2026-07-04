@@ -14,7 +14,7 @@ class HomeHeader extends StatelessWidget {
         final userName =
             currentUser != null && currentUser.name.trim().isNotEmpty
             ? currentUser.name.trim()
-            : 'أحمد';
+            : 'مستخدم Studex';
 
         return Row(
           children: [

@@ -10,6 +10,7 @@ import 'core/config/firebase_config.dart';
 import 'core/routes/app_router_generation.dart' as RouterGenerationConfig;
 import 'core/theme/app_themes.dart';
 import 'blocs/auth/auth_bloc.dart';
+import 'blocs/auth/auth_event.dart';
 import 'blocs/user/user_bloc.dart';
 import 'repositories/auth_repository.dart';
 import 'repositories/user_repository.dart';
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) =>
-              AuthBloc(authRepository: FirebaseAuthRepository()),
+              AuthBloc(authRepository: FirebaseAuthRepository())
+                ..add(const AuthStateChecked()),
         ),
         BlocProvider(
           create: (context) =>
